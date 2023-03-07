@@ -13,13 +13,8 @@ router.beforeEach(async (to, from, next) => {
     // 第一次挂载路由
     if (registerRouteFresh) {
       routearray.forEach((v) => {
-        const index = v.meta.role.indexOf(account);
-        if (index !== -1) {
-          array.push(v);
-        }
+        layoutpart[0].children.push(v);
       });
-      layoutpart[0].children = layoutpart[0].children?.concat(array);
-      console.log(layoutpart);
       router.addRoute(layoutpart[0]);
       // window.localStorage.setItem('menu', JSON.stringify(routeadmin));
       next({ ...to, replace: true });

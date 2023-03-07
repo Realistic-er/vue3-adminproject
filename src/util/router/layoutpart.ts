@@ -10,12 +10,13 @@ const layoutpart:routearray[] = [
     },
     children: [
       {
-        path: '/index',
+        path: 'index',
         name: 'index',
         component: () => import('@/views/index/FirstPage.vue'),
         meta: {
           role: [],
         },
+        children: [],
       },
     ],
   },

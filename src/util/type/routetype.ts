@@ -2,8 +2,9 @@ export type routearray = {
   path: string,
   name: string,
   meta: {
-    role: string[]
+    role: string[],
+    title?: string,
   },
-  component: () => Promise<typeof import("*.vue")>,
-  children?: routearray[]
+  component?: () => Promise<typeof import("*.vue")>,
+  children: routearray[]
 }
