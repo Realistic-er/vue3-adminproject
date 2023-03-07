@@ -7,8 +7,8 @@
     class="form"
     >
       <p>后台管理系统</p>
-      <el-form-item prop="name">
-        <el-input v-model="ruleForm.name" placeholder="请输入账号" :prefix-icon="User"/>
+      <el-form-item prop="username">
+        <el-input v-model="ruleForm.username" placeholder="请输入账号" :prefix-icon="User"/>
       </el-form-item>
       <el-form-item prop="password">
         <el-input v-model="ruleForm.password" placeholder="请输入密码" :prefix-icon="Lock"/>
@@ -28,16 +28,18 @@ import { reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import type { FormInstance, FormRules } from 'element-plus';
 import { User, Lock } from '@element-plus/icons-vue';
+import { ElMessage } from 'element-plus';
+import loginin from '@/util/api/user';
 
 const ruleFormRef = ref<FormInstance>();
 const router = useRouter();
 const ruleForm = reactive({
-  name: 'admin',
+  username: 'admin',
   password: '123456',
 });
 
 const rules = reactive<FormRules>({
-  name: [
+  username: [
     {
       required: true, message: '请输入账号', trigger: 'blur',
     },
@@ -59,9 +61,19 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
-      console.log('路由跳转');
-      router.push('/index');
-      window.localStorage.setItem('account', ruleForm.name);
+      loginin(ruleForm).then((res) => {
+        console.log(res);
+        if (res.data.meta.status === 200) {
+          ElMessage({
+            message: '欢迎使用后台管理系统',
+            type: 'success',
+          });
+          router.push('/index');
+          window.localStorage.setItem('account', ruleForm.username);
+        } else {
+          ElMessage.error('用户名称或者密码不正确,请重新尝试');
+        }
+      });
     } else {
       console.log('校验失败', fields);
     }

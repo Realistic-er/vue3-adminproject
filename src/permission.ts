@@ -16,7 +16,7 @@ router.beforeEach(async (to, from, next) => {
         layoutpart[0].children.push(v);
       });
       router.addRoute(layoutpart[0]);
-      // window.localStorage.setItem('menu', JSON.stringify(routeadmin));
+      window.localStorage.setItem('menu', JSON.stringify(layoutpart));
       next({ ...to, replace: true });
       registerRouteFresh = false;
     } else {

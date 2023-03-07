@@ -15,6 +15,8 @@ const layoutpart:routearray[] = [
         component: () => import('@/views/index/FirstPage.vue'),
         meta: {
           role: [],
+          title: '首页',
+          icon: 'House',
         },
         children: [],
       },

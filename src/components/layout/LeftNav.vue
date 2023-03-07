@@ -3,27 +3,43 @@
     <el-menu
         default-active="2"
         class="el-menu-vertical-demo"
+        :unique-opened="true"
         @open="handleOpen"
         @close="handleClose"
+        router
       >
-        <el-sub-menu index="1">
-          <template #title>
-            <el-icon><location /></el-icon>
-            <span>Navigator One</span>
-          </template>
-          <el-menu-item-group title="Group One">
-            <el-menu-item index="1-1">item one</el-menu-item>
-            <el-menu-item index="1-2">item two</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="Group Two">
-            <el-menu-item index="1-3">item three</el-menu-item>
-          </el-menu-item-group>
-          <el-sub-menu index="1-4">
-            <template #title>item four</template>
-            <el-menu-item index="1-4-1">item one</el-menu-item>
+      <template
+      v-for="(item, index) in menu[0].children"
+      :key="index">
+        <el-menu-item
+        v-if="item.children.length === 0"
+        :index="'/' + item.path">
+          <el-icon>
+            <component :is="item.meta.icon"/>
+          </el-icon>
+          <span>{{ item.meta.title }}</span>
+        </el-menu-item>
+        <template v-else>
+          <el-sub-menu :index="index.toString()">
+            <template #title>
+              <el-icon>
+                <component :is="item.meta.icon"/>
+              </el-icon>
+              <span>{{ item.meta.title }}</span>
+            </template>
+            <el-menu-item v-for="(menu, index) in item.children"
+            :key="index"
+            :index="'/' + item.path + '/' + menu.path"
+            >
+            <el-icon>
+              <component :is="menu.meta.icon"/>
+            </el-icon>
+              {{ menu.meta.title }}
+            </el-menu-item>
           </el-sub-menu>
-        </el-sub-menu>
-      </el-menu>
+        </template>
+      </template>
+    </el-menu>
   </div>
 </template>
 
@@ -35,6 +51,8 @@ import {
   Setting,
 } from '@element-plus/icons-vue';
 
+const menu = JSON.parse(window.localStorage.getItem('menu'));
+console.log(menu);
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath);
 };

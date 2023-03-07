@@ -8,64 +8,77 @@ const charge:routearray[] = [
     meta: {
       role: [],
       title: '系统管理',
+      icon: 'Odometer',
     },
     children: [
       // 数据监控
       {
-        path: 'charge/jobcharge',
+        path: 'jobcharge',
         name: 'jobcharge',
         meta: {
           role: ['admin', 'staff', 'visit'],
+          title: '岗位管理',
+          icon: 'ChatSquare',
         },
         component: () => import('@/views/charge/JobCharge.vue'),
         children: [],
       },
       // 在线用户
       {
-        path: 'charge/menucharge',
+        path: 'menucharge',
         name: 'menucharge',
         meta: {
           role: ['admin', 'staff', 'visit'],
+          title: '菜单管理',
+          icon: 'ChatRound',
         },
         component: () => import('@/views/charge/MenuCharge.vue'),
         children: [],
       },
       // 缓存列表
       {
-        path: 'charge/rolecharge',
+        path: 'rolecharge',
         name: 'rolecharge',
         meta: {
           role: ['admin', 'staff', 'visit'],
+          title: '角色管理',
+          icon: 'ChatLineRound',
         },
         component: () => import('@/views/charge/RoleCharge.vue'),
         children: [],
       },
       // 缓存监控
       {
-        path: 'charge/usercharge',
+        path: 'usercharge',
         name: 'usercharge',
         meta: {
           role: ['admin', 'staff', 'visit'],
+          title: '用户管理',
+          icon: 'ChatLineSquare',
         },
         component: () => import('@/views/charge/UserCharge.vue'),
         children: [],
       },
       // 服务监控
       {
-        path: 'charge/partcharge',
+        path: 'partcharge',
         name: 'partcharge',
         meta: {
           role: ['admin', 'staff', 'visit'],
+          title: '部门管理',
+          icon: 'ChatDotSquare',
         },
         component: () => import('@/views/charge/PartCharge.vue'),
         children: [],
       },
       // 定时任务
       {
-        path: 'charge/dictorycharge',
+        path: 'dictorycharge',
         name: 'dictorycharge',
         meta: {
           role: ['admin', 'staff', 'visit'],
+          title: '字典管理',
+          icon: 'View',
         },
         component: () => import('@/views/charge/DictoryCharge.vue'),
         children: [],
