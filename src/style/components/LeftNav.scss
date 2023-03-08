@@ -1,9 +1,29 @@
 .menucontainer {
      height: 100%;
-    .el-menu {
-        height: 100%;
-        ::v-deep .el-menu-item {
-            font-size: 15px;
+     .sidemenu {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 100;
+        overflow-x: hidden;
+        .el-menu {
+            img {
+                width: 30px;
+                height: 30px;
+                border-radius: 30px;
+            }
+            .chargename {
+                font-weight: bolder;
+            }
+            height: 100%;
+            ::v-deep .el-menu-item {
+                font-size: 15px;
+                ::v-deep .el-menu-vertical-demo:not(.el-menu--collapse){
+                    width: 250px;
+                    height: 100%;
+                }
+            }
         }
     }
 }

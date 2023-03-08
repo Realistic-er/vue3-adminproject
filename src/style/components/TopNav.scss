@@ -1,8 +1,23 @@
 .topnav {
+    padding: 0px 30px;
     .top {
-
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .expands {
+        }
+        .icons {
+            width: 170px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .imgs {
+                width: 50px;
+                border-radius: 15px; 
+            }
+        }
     }
     .bottom {
-        
+        height: 30px;
     }
 }

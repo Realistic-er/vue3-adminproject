@@ -79,11 +79,6 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     }
   });
 };
-
-const options = Array.from({ length: 10000 }).map((_, idx) => ({
-  value: `${idx + 1}`,
-  label: `${idx + 1}`,
-}));
 </script>
 
 <style lang="scss" scoped>

@@ -9,3 +9,9 @@ export type routearray = {
   component?: () => Promise<typeof import("*.vue")>,
   children: routearray[]
 }
+
+export type routeTag = {
+  path: string,
+  name: string,
+  title: string,
+}
