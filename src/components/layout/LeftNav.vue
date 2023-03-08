@@ -1,19 +1,22 @@
 <template>
   <div class="menucontainer">
     <el-menu
-        default-active="2"
+        :default-active="currentroute"
         class="el-menu-vertical-demo"
         :unique-opened="true"
+        background-color="rgb(48, 65, 86)"
+        text-color="rgb(191, 203, 217)"
+        active-text-color="rgb(64, 158, 255)"
         @open="handleOpen"
         @close="handleClose"
         router
       >
-      <template
+      <div
       v-for="(item, index) in menu[0].children"
       :key="index">
         <el-menu-item
-        v-if="item.children.length === 0"
-        :index="'/' + item.path">
+          v-if="item.children.length === 0"
+          :index="'/' + item.path">
           <el-icon>
             <component :is="item.meta.icon"/>
           </el-icon>
@@ -38,21 +41,24 @@
             </el-menu-item>
           </el-sub-menu>
         </template>
-      </template>
+      </div>
     </el-menu>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { reactive, ref } from 'vue';
 import {
   Document,
   Menu as IconMenu,
   Location,
   Setting,
 } from '@element-plus/icons-vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
+const currentroute = ref(router.currentRoute.value.fullPath);
 const menu = JSON.parse(window.localStorage.getItem('menu'));
-console.log(menu);
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath);
 };

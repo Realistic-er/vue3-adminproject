@@ -1,0 +1,9 @@
+.menucontainer {
+     height: 100%;
+    .el-menu {
+        height: 100%;
+        ::v-deep .el-menu-item {
+            font-size: 15px;
+        }
+    }
+}
