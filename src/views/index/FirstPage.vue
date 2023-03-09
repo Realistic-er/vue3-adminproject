@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <GlobalContainer>
     首页
-  </div>
+  </GlobalContainer>
 </template>
 
 <script lang="ts" setup>

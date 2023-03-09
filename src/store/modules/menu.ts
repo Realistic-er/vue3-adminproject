@@ -10,7 +10,6 @@ const menu = {
       isCollapse: false,
       routeTagarray: [
         {
-          path: '/index',
           name: 'index',
           title: '首页',
         },
@@ -23,7 +22,25 @@ const menu = {
     },
     // change
     changerouteTag: (state:menutype, para:routeTag) => {
-      state.routeTagarray.push(para);
+      if (para.name !== 'index') {
+        // 判断如果不存在
+        const index = state.routeTagarray.findIndex((item) => item.name === para.name);
+        // 如果不存在
+        if (index === -1) {
+          const object = {
+            name: '',
+            title: '',
+          };
+          object.name = para.name;
+          object.title = para.title;
+          state.routeTagarray.push(object);
+        }
+      }
+    },
+    // 删除tag
+    closeTag: (state:menutype, item:routeTag) => {
+      const index = state.routeTagarray.findIndex((val) => val.name === item.name);
+      state.routeTagarray.splice(index, 1);
     },
   },
 };

@@ -21,7 +21,7 @@
         :key="index">
           <el-menu-item
             v-if="item.children.length === 0"
-            :index="'/' + item.path" @click="saveTag()">
+            :index="'/' + item.path" @click="saveTagIndex(item)">
             <el-icon style="margin-right:10px;">
               <component :is="item.meta.icon"/>
             </el-icon>
@@ -38,7 +38,7 @@
               <el-menu-item v-for="(menu, index) in item.children"
               :key="index"
               :index="'/' + item.path + '/' + menu.path"
-              @click="saveTag()">
+              @click="saveTagIndex(menu)">
               <el-icon style="margin-right:10px;">
                 <component :is="menu.meta.icon"/>
               </el-icon>
@@ -65,28 +65,23 @@ import {
 } from '@element-plus/icons-vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-import { routeTag } from '../../util/type/routetype';
+import { routeTag, routearray } from '../../util/type/routetype';
 
 const router = useRouter();
 const store = useStore();
-const currentroute = ref(router.currentRoute.value);
+const currentroute = ref(router.currentRoute.value.fullPath);
 const menu = JSON.parse(window.localStorage.getItem('menu'));
 const isCollapse = computed(() => store.state.menu.isCollapse);
 const routetagarray:routeTag[] = computed(() => store.state.menu.routeTagarray).value;
 const routetagobject = reactive({
-  path: '',
   name: '',
   title: '',
 });
-const saveTag = () => {
-  console.log(currentroute);
-  routetagobject.path = currentroute.value.path;
-  routetagobject.name = currentroute.value.name;
-  routetagobject.title = currentroute.value.meta.title;
-  const index = routetagarray.indexOf(routetagobject);
-  if (index === -1) {
-    store.commit('changerouteTag', routetagobject);
-  }
+// 一级菜单栏
+const saveTagIndex = (para1:routearray) => {
+  routetagobject.name = para1.name;
+  routetagobject.title = para1.meta.title;
+  store.commit('changerouteTag', routetagobject);
 };
 </script>
 

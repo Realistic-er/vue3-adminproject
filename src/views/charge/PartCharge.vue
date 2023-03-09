@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <GlobalContainer></GlobalContainer>
 </template>
 
 <script setup lang="ts">

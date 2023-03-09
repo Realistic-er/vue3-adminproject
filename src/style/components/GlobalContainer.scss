@@ -1,0 +1,13 @@
+.globalcontainer {
+    width: 100%;
+    height: calc(100% - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .son {
+        width: calc(100% - 40px);
+        height: calc(100% - 40px);
+        background-color: gainsboro;
+    }
+    
+}

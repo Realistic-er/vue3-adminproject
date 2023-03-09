@@ -11,7 +11,6 @@ export type routearray = {
 }
 
 export type routeTag = {
-  path: string,
   name: string,
   title: string,
 }

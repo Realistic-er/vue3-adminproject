@@ -1,10 +1,8 @@
 <template>
-  <div>
-    数据监控
-  </div>
+  <GlobalContainer></GlobalContainer>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 </script>
 
 <style lang="scss" scoped>

@@ -18,12 +18,14 @@
     </div>
     <div class="bottom">
       <el-tag
-      v-for="item in routetagarray"
-      :key="item.path"
-      class="mx-1"
-      effect="dark"
-      closable
-    >
+        v-for="(item,index) in routetagarray"
+        class="eltag"
+        :effect="item.name === $route.name ? 'dark' : 'plain'"
+        :key="item.name"
+        :closable="item.name !== 'index'"
+        @close="closeTag(item, index)"
+        @click="jumpTag(item)"
+      >
       {{ item.title }}
     </el-tag>
     </div>
@@ -34,17 +36,33 @@
 import {
   reactive, ref, toRaw, computed,
 } from 'vue';
+import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { routeTag } from '../../util/type/routetype';
 
 const store = useStore();
 const icons = ['Search', 'FullScreen', 'Lock'];
 const isCollapse = computed(() => store.state.menu.isCollapse);
-const routetagarray:routeTag[] = computed(() => store.state.menu.routeTagarray).value;
-console.log(store);
+// const routetagarray:routeTag[] = computed(() => store.state.menu.routeTagarray).value;
+const routetagarray:routeTag[] = reactive(store.state.menu.routeTagarray);
+const router = useRouter();
+
 const clickIcon = () => {
   store.commit('changecollapse');
-  console.log('123');
+};
+const closeTag = (item:routeTag, index:number) => {
+  const currentroute = router.currentRoute.value;
+  store.commit('closeTag', item);
+  if (item.name === currentroute.name) {
+    router.push({
+      name: routetagarray[index - 1].name,
+    });
+  }
+};
+const jumpTag = (item:routeTag) => {
+  router.push({
+    name: item.name,
+  });
 };
 </script>
 

@@ -17,6 +17,7 @@ declare module '@vue/runtime-core' {
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElTag: typeof import('element-plus/es')['ElTag']
+    GlobalContainer: typeof import('./src/components/GlobalContainer.vue')['default']
     LeftNav: typeof import('./src/components/layout/LeftNav.vue')['default']
     LoginForm: typeof import('./src/components/login/LoginForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

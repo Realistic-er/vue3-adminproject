@@ -1,10 +1,8 @@
 <template>
-  <div>
-    在线用户
-  </div>
+  <GlobalContainer></GlobalContainer>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 </script>
 
 <style lang="scss" scoped>
