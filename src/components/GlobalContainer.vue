@@ -1,7 +1,7 @@
 <template>
   <div class="globalcontainer">
     <div class="son">
-
+      <slot></slot>
     </div>
   </div>
 </template>

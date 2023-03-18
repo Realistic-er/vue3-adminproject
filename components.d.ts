@@ -7,21 +7,40 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AddJob: typeof import('./src/components/jobcharge/AddJob.vue')['default']
+    AddMenu: typeof import('./src/components/menucharge/AddMenu.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
+    ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
+    ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCol: typeof import('element-plus/es')['ElCol']
+    ElDialog: typeof import('element-plus/es')['ElDialog']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInput: typeof import('element-plus/es')['ElInput']
+    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
+    ElPagination: typeof import('./src/components/ElPagination.vue')['default']
+    ElPopover: typeof import('element-plus/es')['ElPopover']
+    ElRadio: typeof import('element-plus/es')['ElRadio']
+    ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
+    ElRow: typeof import('element-plus/es')['ElRow']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
+    ElTable: typeof import('element-plus/es')['ElTable']
+    ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTag: typeof import('element-plus/es')['ElTag']
+    ElTreeSelect: typeof import('element-plus/es')['ElTreeSelect']
     GlobalContainer: typeof import('./src/components/GlobalContainer.vue')['default']
+    IconList: typeof import('./src/components/menucharge/IconList.vue')['default']
     LeftNav: typeof import('./src/components/layout/LeftNav.vue')['default']
     LoginForm: typeof import('./src/components/login/LoginForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TopNav: typeof import('./src/components/layout/TopNav.vue')['default']
+  }
+  export interface ComponentCustomProperties {
+    vPopover: typeof import('element-plus/es')['ElPopoverDirective']
   }
 }

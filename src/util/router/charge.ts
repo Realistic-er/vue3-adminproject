@@ -85,7 +85,6 @@ const charge:routearray[] = [
       },
     ],
   },
-
 ];
 
 export default filterrouter(charge);

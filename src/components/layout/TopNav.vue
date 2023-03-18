@@ -3,9 +3,18 @@
     <div class="top">
       <!-- 左侧折叠按钮 -->
       <div class="expand">
+        <!-- 图标 -->
         <el-icon :size="20" @click.prevent="clickIcon">
           <component :is=" isCollapse ? 'Expand' : 'Fold'"/>
         </el-icon>
+        <!-- 面包屑 -->
+        <div class="brand">
+          <el-breadcrumb separator="/">
+            <el-breadcrumb-item v-for="route in array" :key="route">
+              {{ route.meta.title }}
+            </el-breadcrumb-item>
+          </el-breadcrumb>
+        </div>
       </div>
       <!-- 右侧图标集合 -->
       <div class="icons">
@@ -34,9 +43,9 @@
 
 <script setup lang="ts">
 import {
-  reactive, ref, toRaw, computed,
+  reactive, ref, toRaw, computed, watch,
 } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute, RouteRecordRaw } from 'vue-router';
 import { useStore } from 'vuex';
 import { routeTag } from '../../util/type/routetype';
 
@@ -46,7 +55,23 @@ const isCollapse = computed(() => store.state.menu.isCollapse);
 // const routetagarray:routeTag[] = computed(() => store.state.menu.routeTagarray).value;
 const routetagarray:routeTag[] = reactive(store.state.menu.routeTagarray);
 const router = useRouter();
-
+const route = useRoute();
+const array = ref([]);
+const arrayindex = ref([
+  {
+    path: '/index',
+    meta: {
+      title: '首页',
+    },
+  },
+]);
+watch(() => route.matched, (val) => {
+  if (val[1].meta.title !== '首页') {
+    array.value = arrayindex.value.concat(val.slice(1));
+  } else {
+    array.value = val.slice(1);
+  }
+}, { immediate: true, deep: true });
 const clickIcon = () => {
   store.commit('changecollapse');
 };
