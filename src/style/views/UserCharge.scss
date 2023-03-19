@@ -1,0 +1,10 @@
+.containeruser {
+    height: 100%;
+    display: flex;
+    .left {
+        width: 200px;
+    }
+    .right {
+        flex: 1;
+    }
+}

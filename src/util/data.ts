@@ -72,3 +72,61 @@ export const iconlist = [
   'ChatDotSquare', 'View', 'Notification', 'Connection', 'ChatDotRound',
   'Setting', 'Clock', 'Position', 'Discount',
 ];
+
+export const datatree = [
+  {
+    label: '后台管理系统',
+    children: [
+      {
+        label: '北京总公司',
+        children: [
+          {
+            label: '研发部门',
+            id: 'beijingyanfa',
+          },
+          {
+            label: '市场部门',
+            id: 'beijingshichang',
+          },
+          {
+            label: '测试部门',
+            id: 'beijingceshi',
+          },
+          {
+            label: '财务部门',
+            id: 'beijingcaiwu',
+          },
+          {
+            label: '运维部门',
+            id: 'beijingyunwei',
+          },
+        ],
+      },
+      {
+        label: '上海分公司',
+        children: [
+          {
+            label: '研发部门',
+            id: 'shanghaiyanfa',
+          },
+          {
+            label: '市场部门',
+            id: 'shanghaishichang',
+          },
+          {
+            label: '测试部门',
+            id: 'shanghaiceshi',
+          },
+          {
+            label: '财务部门',
+            id: 'shanghaicaiwu',
+          },
+          {
+            label: '运维部门',
+            id: 'shanghaiyunwei',
+          },
+        ],
+      },
+    ],
+  },
+];

@@ -31,6 +31,7 @@ declare module '@vue/runtime-core' {
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTag: typeof import('element-plus/es')['ElTag']
+    ElTree: typeof import('element-plus/es')['ElTree']
     ElTreeSelect: typeof import('element-plus/es')['ElTreeSelect']
     GlobalContainer: typeof import('./src/components/GlobalContainer.vue')['default']
     IconList: typeof import('./src/components/menucharge/IconList.vue')['default']
@@ -39,6 +40,7 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TopNav: typeof import('./src/components/layout/TopNav.vue')['default']
+    UserTable: typeof import('./src/components/usercharge/UserTable.vue')['default']
   }
   export interface ComponentCustomProperties {
     vPopover: typeof import('element-plus/es')['ElPopoverDirective']

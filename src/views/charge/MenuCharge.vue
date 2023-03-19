@@ -90,8 +90,6 @@
       </el-table-column>
       <!--  -->
     </el-table>
-    <!-- 分页 -->
-    <el-pagination ref="RefPagination"/>
     <!-- 新增dialog -->
     <Add-menu ref="RefChilde"></Add-menu>
   </GlobalContainer>
