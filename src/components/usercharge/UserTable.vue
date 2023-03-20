@@ -17,9 +17,9 @@
           <el-table-column prop="status" label="状态">
             <template #default="scope">
               <el-tag
-                :type="scope.row.status === 1 ? '' : 'danger'"
+                :type="scope.row.status === '1' ? '' : 'danger'"
                 disable-transitions
-                >{{ scope.row.status === 1 ? '正常' : '停用' }}</el-tag
+                >{{ scope.row.status === '1' ? '正常' : '停用' }}</el-tag
               >
             </template>
           </el-table-column>
@@ -44,7 +44,7 @@
 
 <script setup lang="ts">
 import {
-  reactive, ref, defineProps, toRefs,
+  reactive, ref, defineProps, toRefs, getCurrentInstance,
 } from 'vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { userlist } from '../../util/type/requesrtype';
@@ -53,9 +53,36 @@ const props = defineProps({
   userinfo: Array,
 });
 const { userinfo } = toRefs(props);
-console.log(props);
+const instance = getCurrentInstance();
 const handleSelectionChange = () => {
   console.log('123');
+};
+const handleClick = (val: userlist) => {
+  instance?.proxy?.$Bus.emit('on-click', val);
+};
+const handleDelete = (val:userlist) => {
+  console.log('111');
+  ElMessageBox.confirm(
+    `是否删除岗位名称为-${val.name}-这条数据嘛？`,
+    'Warning',
+    {
+      confirmButtonText: '确认',
+      cancelButtonText: '取消',
+      type: 'warning',
+    },
+  )
+    .then(() => {
+      ElMessage({
+        type: 'success',
+        message: '删除成功',
+      });
+    })
+    .catch(() => {
+      ElMessage({
+        type: 'info',
+        message: '取消删除',
+      });
+    });
 };
 </script>
 

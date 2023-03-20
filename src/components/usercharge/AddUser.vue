@@ -4,6 +4,7 @@
       v-model="dialogVisible"
       title="添加岗位"
       width="50%"
+      :before-close="handleClose()"
     >
       <el-form :model="form" :rules="rules" label-width="120px" ref="ruleFormRef">
         <!-- 1 -->
@@ -50,7 +51,7 @@
           </el-col>
           <el-col :span="12">
             <el-form-item label="用户密码" prop="password">
-              <el-input v-model="form.password" placeholder="请输入用户密码" />
+              <el-input v-model="form.password" type="password" placeholder="请输入用户密码" />
             </el-form-item>
           </el-col>
         </el-row>
@@ -106,12 +107,12 @@
         </el-row>
         <!-- 备注 -->
         <el-form-item label="备注" prop="text">
-          <el-input v-model="form.text" placeholder="请输入备注"></el-input>
+          <el-input v-model="form.text" type="textarea" placeholder="请输入备注"></el-input>
         </el-form-item>
       </el-form>
       <template #footer>
       <span class="dialog-footer">
-        <el-button @click="dialogVisible = false">取消</el-button>
+        <el-button @click="cancelForm(ruleFormRef)">取消</el-button>
         <el-button type="primary" @click="addForm(ruleFormRef)">
           新建
         </el-button>
@@ -123,13 +124,14 @@
 
 <script setup lang="ts">
 import {
-  reactive, ref, defineExpose, toRaw, unref, watch,
+  reactive, ref, defineExpose, toRaw, unref, watch, getCurrentInstance,
 } from 'vue';
 import type { FormInstance, FormRules } from 'element-plus';
 import {
   ClickOutside as vClickOutside, ElMessage,
 } from 'element-plus';
 import { datatree, iconlist } from '../../util/data';
+import { userlist } from '../../util/type/requesrtype';
 
 interface Tree {
   label: string
@@ -240,17 +242,45 @@ const opendialog = () => {
   dialogVisible.value = true;
 };
 const addForm = (formEl: FormInstance | undefined) => {
-  ElMessage({
-    message: `${toRaw(form)}`,
-    type: 'success',
-  });
-  dialogVisible.value = false;
   if (!formEl) return;
-  formEl.resetFields();
+  formEl.validate((valid) => {
+    if (valid) {
+      ElMessage({
+        message: `${toRaw(form)}`,
+        type: 'success',
+      });
+      dialogVisible.value = false;
+    } else {
+      console.log('1122');
+    }
+  });
+};
+const cancelForm = (formEl: FormInstance | undefined) => {
+  dialogVisible.value = false;
+};
+const handleClose = (formEl: FormInstance | undefined) => {
+  ruleFormRef.value?.clearValidate();
 };
 const editForm = () => {
   dialogVisible.value = true;
 };
+// 初始化
+const instance = getCurrentInstance();
+// 接收事件
+instance?.proxy?.$Bus.on('on-click', (val: userlist) => {
+  dialogVisible.value = true;
+  form.username = val.username;
+  form.name = val.name;
+  form.part = val.part;
+  form.email = val.email;
+  form.status = val.status;
+  form.phone = val.phone;
+  form.password = val.password;
+  form.sex = val.sex;
+  form.job = val.job;
+  form.role = val.role;
+  form.text = val.text;
+});
 defineExpose({
   opendialog,
   editForm,
