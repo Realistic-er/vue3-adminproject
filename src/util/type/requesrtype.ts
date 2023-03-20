@@ -17,3 +17,13 @@ export type userlist = {
   role: string,
   text: string,
 }
+
+export type roleList = {
+  rolename: string,
+  rolestring: string,
+  sort: number,
+  email: string,
+  status: string,
+  menurole: string,
+  text: string,
+}
