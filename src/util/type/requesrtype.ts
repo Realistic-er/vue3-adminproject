@@ -27,3 +27,29 @@ export type roleList = {
   menurole: string,
   text: string,
 }
+
+export type parttype = {
+  label: string,
+  sort: number,
+  status: string,
+  time: string,
+  id: string,
+  children: [
+    {
+      label: string,
+      sort: number,
+      status: string,
+      time: string,
+      id: string,
+      children: [
+        {
+          label: string,
+          sort: number,
+          status: string,
+          time: string,
+          id: string,
+        }
+      ]
+    }
+  ]
+}

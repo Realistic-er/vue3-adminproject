@@ -31,7 +31,17 @@
           <el-radio label="2" size="large">停用</el-radio>
         </el-radio-group>
       </el-form-item>
-
+      <!--  -->
+      <!--  -->
+      <el-form-item label="菜单权限" prop="menurole">
+        <el-checkbox v-model="checked1" label="展开/折叠" @change="change1"/>
+        <el-checkbox v-model="checked2" label="全选/全不选" @change="change2"/>
+      </el-form-item>
+      <!--  -->
+      <el-form-item>
+        <el-tree :data="data" :props="defaultProps" show-checkbox node-key="label"
+        ref="treedata" @node-click="handleNodeClick"/>
+      </el-form-item>
       <el-form-item label="备注" prop="text">
         <el-input v-model="form.text" type="textarea" />
       </el-form-item>
@@ -57,7 +67,22 @@ import type { FormInstance, FormRules } from 'element-plus';
 import {
   ClickOutside as vClickOutside, ElMessage,
 } from 'element-plus';
+import { data as datalist, iconlist } from '../../util/data';
 
+interface Tree {
+  label: string
+  children?: Tree[],
+  id?: string;
+}
+const checked1 = ref(false);
+const checked2 = ref(false);
+const treedata = ref();
+const data: Tree[] = datalist;
+const defaultProps = {
+  children: 'children',
+  label: 'label',
+  id: 'id',
+};
 const ruleFormRef = ref<FormInstance>();
 const dialogVisible = ref(false);
 const form = reactive({
@@ -65,7 +90,7 @@ const form = reactive({
   rolestring: '',
   sort: 1,
   status: '1',
-  menurole: '',
+  menurole: [],
   text: '',
 });
 const rules = reactive<FormRules>({
@@ -80,6 +105,7 @@ const opendialog = () => {
   dialogVisible.value = true;
 };
 const addForm = async (formEl: FormInstance | undefined) => {
+  form.menurole = treedata.value.getCheckedKeys(true);
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
@@ -96,6 +122,26 @@ const addForm = async (formEl: FormInstance | undefined) => {
 };
 const editForm = () => {
   dialogVisible.value = true;
+};
+const handleNodeClick = (val: Tree) => {
+  form.menurole = val.id;
+  console.log(val);
+};
+const change1 = () => {
+  const nodes = treedata.value.store.nodesMap;
+  for (const node in nodes) {
+    if (Object.prototype.hasOwnProperty.call(nodes, node)) {
+      nodes[node].expanded = checked1.value;
+    }
+  }
+};
+const change2 = () => {
+  console.log('123');
+  if (checked2.value) {
+    treedata.value.setCheckedNodes(data);
+  } else {
+    treedata.value.setCheckedNodes([]);
+  }
 };
 defineExpose({
   opendialog,
