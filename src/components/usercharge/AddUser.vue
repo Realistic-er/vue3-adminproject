@@ -241,17 +241,18 @@ const rules = reactive<FormRules>({
 const opendialog = () => {
   dialogVisible.value = true;
 };
-const addForm = (formEl: FormInstance | undefined) => {
+const addForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
-  formEl.validate((valid) => {
+  await formEl.validate((valid, fields) => {
     if (valid) {
       ElMessage({
         message: `${toRaw(form)}`,
         type: 'success',
       });
       dialogVisible.value = false;
+      formEl.resetFields();
     } else {
-      console.log('1122');
+      console.log('error submit!', fields);
     }
   });
 };

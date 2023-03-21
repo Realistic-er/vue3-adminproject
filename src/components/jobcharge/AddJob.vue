@@ -28,7 +28,7 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="备注">
-          <el-input v-model="form.note" type="textarea" />
+          <el-input v-model="form.text" type="textarea" />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -56,7 +56,7 @@ const form = reactive({
   code: '',
   sort: 1,
   status: '1',
-  note: '',
+  text: '',
 });
 const rules = reactive<FormRules>({
   name: [
@@ -79,13 +79,20 @@ const rules = reactive<FormRules>({
 const opendialog = () => {
   dialogVisible.value = true;
 };
-const addForm = () => {
-  console.log(toRaw(form));
-  ElMessage({
-    message: `${toRaw(form)}`,
-    type: 'success',
+const addForm = async (formEl: FormInstance | undefined) => {
+  if (!formEl) return;
+  await formEl.validate((valid, fields) => {
+    if (valid) {
+      ElMessage({
+        message: `${toRaw(form)}`,
+        type: 'success',
+      });
+      dialogVisible.value = false;
+      formEl.resetFields();
+    } else {
+      console.log('error submit!', fields);
+    }
   });
-  dialogVisible.value = false;
 };
 const editForm = () => {
   dialogVisible.value = true;

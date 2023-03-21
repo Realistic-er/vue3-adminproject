@@ -67,7 +67,7 @@ type job = {
   name: string,
   sort: number,
   status: string,
-  note: string,
+  text: string,
 };
 type scope = {
   code: string,

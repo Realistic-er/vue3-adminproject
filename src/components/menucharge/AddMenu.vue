@@ -209,14 +209,20 @@ watch(() => form.menutype, (val) => {
 const opendialog = () => {
   dialogVisible.value = true;
 };
-const addForm = (formEl: FormInstance | undefined) => {
-  ElMessage({
-    message: `${toRaw(form)}`,
-    type: 'success',
-  });
-  dialogVisible.value = false;
+const addForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
-  formEl.resetFields();
+  await formEl.validate((valid, fields) => {
+    if (valid) {
+      ElMessage({
+        message: `${toRaw(form)}`,
+        type: 'success',
+      });
+      dialogVisible.value = false;
+      formEl.resetFields();
+    } else {
+      console.log('error submit!', fields);
+    }
+  });
 };
 const editForm = () => {
   dialogVisible.value = true;

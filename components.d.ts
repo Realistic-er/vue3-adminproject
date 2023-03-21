@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AddJob: typeof import('./src/components/jobcharge/AddJob.vue')['default']
     AddMenu: typeof import('./src/components/menucharge/AddMenu.vue')['default']
+    AddRole: typeof import('./src/components/rolecharge/AddRole.vue')['default']
     AddUser: typeof import('./src/components/usercharge/AddUser.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
