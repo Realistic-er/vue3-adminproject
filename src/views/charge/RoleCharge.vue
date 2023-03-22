@@ -64,6 +64,7 @@ getrole().then((res) => {
   roleinfo.value = res.data.data.data;
 });
 const add = () => {
+  console.log('123');
   RefChilde.value.opendialog();
 };
 const beforeChange1 = (val:roleList) => (

@@ -53,3 +53,11 @@ export type parttype = {
     }
   ]
 }
+
+export type part = {
+  label: string,
+  sort: number,
+  status: string,
+  time: string,
+  id: string,
+}

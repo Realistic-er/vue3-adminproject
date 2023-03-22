@@ -2,7 +2,7 @@
   <div class="addmenu">
     <el-dialog
       v-model="dialogVisible"
-      title="添加岗位"
+      title="添加菜单"
       width="50%"
     >
       <el-form :model="form" :rules="rules" label-width="120px" ref="ruleFormRef">

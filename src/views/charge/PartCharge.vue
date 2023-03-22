@@ -1,27 +1,86 @@
 <template>
   <GlobalContainer>
+    <div class="btn">
+        <!-- 新增按钮 -->
+        <el-button icon="Plus" type="primary" @click="add()">新增</el-button>
+      </div>
     <el-table
       :data="datatree"
       style="width: 100%; margin-bottom: 20px"
       row-key="id"
       :border="true"
     >
-      <el-table-column prop="label" label="部门名称" />
+      <el-table-column label="序号" type="index" width="50" />
+      <el-table-column prop="partname" label="部门名称" />
       <el-table-column prop="sort" label="排序" />
       <el-table-column prop="status" label="状态" />
       <el-table-column prop="time" label="创建时间" />
+      <el-table-column label="操作">
+      <template #default="scope">
+        <el-button link type="primary" size="small"
+        @click="handleEdit(scope.row)"
+          >编辑</el-button>
+        <el-button link type="primary" size="small"
+          @click="handleDelete(scope.row)">删除</el-button>
+      </template>
+    </el-table-column>
     </el-table>
+    <!--  -->
+    <add-part ref="RefChilde"></add-part>
   </GlobalContainer>
 </template>
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
-import { parttype } from '../../util/type/requesrtype';
-import { datatree } from '../../util/data';
+import { part } from '../../util/type/requesrtype';
+import AddPart from '../../components/partcharge/AddPart.vue';
+import getpart from '../../util/api/charge/partcharge';
 
+const datatree = ref([]);
+const RefChilde = ref();
+getpart().then((res) => {
+  datatree.value = res.data.data.data;
+});
+const handleEdit = (val) => {
+  RefChilde.value.opendialog();
+  RefChilde.value.form.partname = val.partname;
+  RefChilde.value.form.sort = val.sort;
+  RefChilde.value.form.personcharge = val.personcharge;
+  RefChilde.value.form.phone = val.phone;
+  RefChilde.value.form.email = val.email;
+  RefChilde.value.form.status = val.status;
+};
+const handleDelete = (val) => {
+  ElMessageBox.confirm(
+    `是否删除岗位名称为-${val.partname}-这条数据嘛？`,
+    'Warning',
+    {
+      confirmButtonText: '确认',
+      cancelButtonText: '取消',
+      type: 'warning',
+    },
+  )
+    .then(() => {
+      ElMessage({
+        type: 'success',
+        message: '删除成功',
+      });
+    })
+    .catch(() => {
+      ElMessage({
+        type: 'info',
+        message: '取消删除',
+      });
+    });
+};
+const add = () => {
+  RefChilde.value.opendialog();
+};
 </script>
 
 <style lang="scss" scoped>
-
+.btn {
+  padding-bottom: 20px;
+}
 </style>
