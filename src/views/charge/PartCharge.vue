@@ -13,7 +13,15 @@
       <el-table-column label="序号" type="index" width="50" />
       <el-table-column prop="partname" label="部门名称" />
       <el-table-column prop="sort" label="排序" />
-      <el-table-column prop="status" label="状态" />
+      <el-table-column prop="status" label="状态">
+        <template #default="scope">
+          <el-tag
+            :type="scope.row.status === '1' ? '' : 'danger'"
+            disable-transitions
+            >{{ scope.row.status === '1' ? '正常' : '停用' }}</el-tag
+          >
+        </template>
+      </el-table-column>
       <el-table-column prop="time" label="创建时间" />
       <el-table-column label="操作">
       <template #default="scope">

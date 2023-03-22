@@ -19,7 +19,6 @@ import { iconlist } from '../../util/data';
 
 const emit = defineEmits(['choose']);
 const choose = (val:string) => {
-  console.log(val);
   emit('choose', val);
 };
 defineExpose({

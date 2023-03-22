@@ -122,7 +122,6 @@ const tableData = ref([]);
 const RefChilde = ref();
 const RefPagination = ref();
 getmenucharge().then((res) => {
-  console.log(res);
   tableData.value = res.data.data;
 });
 const add = () => {
@@ -136,7 +135,6 @@ const handleClick = (val:scope) => {
   RefChilde.value.form.status = String(val.status);
 };
 const handleDelete = (val:scope) => {
-  console.log('111');
   ElMessageBox.confirm(
     `是否删除岗位名称为-${val.name}-这条数据嘛？`,
     'Warning',
@@ -170,7 +168,6 @@ const handleClickExpand = (val:scope) => {
   RefChilde.value.form.status = String(val.status);
 };
 const handleDeleteExpand = (val:scope) => {
-  console.log('111');
   ElMessageBox.confirm(
     `是否删除岗位名称为-${val.name}-这条数据嘛？`,
     'Warning',

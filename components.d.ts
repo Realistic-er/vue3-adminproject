@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AddDictory: typeof import('./src/components/dictorycharge/AddDictory.vue')['default']
     AddJob: typeof import('./src/components/jobcharge/AddJob.vue')['default']
     AddMenu: typeof import('./src/components/menucharge/AddMenu.vue')['default']
     AddPart: typeof import('./src/components/partcharge/AddPart.vue')['default']

@@ -62,7 +62,6 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   await formEl.validate((valid, fields) => {
     if (valid) {
       loginin(ruleForm).then((res) => {
-        console.log(res);
         if (res.data.meta.status === 200) {
           ElMessage({
             message: '欢迎使用后台管理系统',

@@ -125,7 +125,6 @@ const editForm = () => {
 };
 const handleNodeClick = (val: Tree) => {
   form.menurole = val.id;
-  console.log(val);
 };
 const change1 = () => {
   const nodes = treedata.value.store.nodesMap;
@@ -136,7 +135,6 @@ const change1 = () => {
   }
 };
 const change2 = () => {
-  console.log('123');
   if (checked2.value) {
     treedata.value.setCheckedNodes(data);
   } else {

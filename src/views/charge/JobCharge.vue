@@ -93,7 +93,6 @@ const handleClick = (val:scope) => {
   RefChilde.value.form.status = String(val.status);
 };
 const handleDelete = (val:scope) => {
-  console.log('111');
   ElMessageBox.confirm(
     `是否删除岗位名称为-${val.name}-这条数据嘛？`,
     'Warning',

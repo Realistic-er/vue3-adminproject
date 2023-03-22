@@ -44,7 +44,6 @@ const RefChilde = ref();
 const userinfo = ref([]);
 const getuserlist = () => {
   getuser().then((res) => {
-    console.log(res);
     userinfo.value = res.data.data.data;
   });
 };
@@ -59,7 +58,6 @@ const defaultProps = {
   id: 'id',
 };
 watch(() => data.id, (val) => {
-  console.log(val);
   getuserlist();
 }, { immediate: true, deep: true });
 const add = () => {

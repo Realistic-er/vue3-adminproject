@@ -61,7 +61,6 @@ const handleClick = (val: userlist) => {
   instance?.proxy?.$Bus.emit('on-click', val);
 };
 const handleDelete = (val:userlist) => {
-  console.log('111');
   ElMessageBox.confirm(
     `是否删除岗位名称为-${val.name}-这条数据嘛？`,
     'Warning',

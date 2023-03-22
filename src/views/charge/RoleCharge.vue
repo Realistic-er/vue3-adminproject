@@ -64,7 +64,6 @@ getrole().then((res) => {
   roleinfo.value = res.data.data.data;
 });
 const add = () => {
-  console.log('123');
   RefChilde.value.opendialog();
 };
 const beforeChange1 = (val:roleList) => (
@@ -107,7 +106,6 @@ const handleClick = (val: roleList) => {
   RefChilde.value.form.text = val.text;
 };
 const handleDelete = (val: roleList) => {
-  console.log('111');
   ElMessageBox.confirm(
     `是否删除岗位名称为-${val.rolename}-这条数据嘛？`,
     'Warning',
