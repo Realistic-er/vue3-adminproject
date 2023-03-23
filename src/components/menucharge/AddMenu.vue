@@ -4,6 +4,7 @@
       v-model="dialogVisible"
       title="添加菜单"
       width="50%"
+      :before-close="closedialog"
     >
       <el-form :model="form" :rules="rules" label-width="120px" ref="ruleFormRef">
         <el-form-item label="上级菜单" prop="forwardmenu" width="50%">
@@ -223,6 +224,23 @@ const addForm = async (formEl: FormInstance | undefined) => {
       console.log('error submit!', fields);
     }
   });
+};
+const closedialog = () => {
+  ruleFormRef.value.resetFields();
+  form.forwardmenu = '';
+  form.menutype = '1';
+  form.icon = 'Search';
+  form.menuname = '';
+  form.sort = 1;
+  form.isout = '1';
+  form.routeaddress = '';
+  form.componentpath = '';
+  form.rolestring = '';
+  form.routequery = '';
+  form.isalive = '1';
+  form.showstatus = '1';
+  form.menustatus = '1';
+  dialogVisible.value = false;
 };
 const editForm = () => {
   dialogVisible.value = true;

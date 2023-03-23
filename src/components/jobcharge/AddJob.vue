@@ -4,8 +4,9 @@
       v-model="dialogVisible"
       title="添加岗位"
       width="50%"
+      :before-close="closedialog"
     >
-      <el-form :model="form" :rules="rules" label-width="120px">
+      <el-form :model="form" :rules="rules" label-width="120px" ref="ruleFormRef">
         <el-form-item label="岗位名称" prop="name">
           <el-input v-model="form.name" />
         </el-form-item>
@@ -45,12 +46,13 @@
 
 <script setup lang="ts">
 import {
-  reactive, ref, defineExpose, toRaw,
+  reactive, ref, defineExpose, toRaw, nextTick,
 } from 'vue';
 import type { FormInstance, FormRules } from 'element-plus';
 import { ElMessage } from 'element-plus';
 
 const dialogVisible = ref(false);
+const ruleFormRef = ref<FormInstance>();
 const form = reactive({
   name: '',
   code: '',
@@ -78,6 +80,15 @@ const rules = reactive<FormRules>({
 });
 const opendialog = () => {
   dialogVisible.value = true;
+};
+const closedialog = () => {
+  ruleFormRef.value.resetFields();
+  form.name = '';
+  form.code = '';
+  form.sort = 1;
+  form.text = '';
+  form.status = '1';
+  dialogVisible.value = false;
 };
 const addForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;

@@ -4,6 +4,7 @@
       v-model="dialogVisible"
       title="添加角色"
       width="50%"
+      :before-close="closedialog"
     >
       <el-form :model="form" :rules="rules" label-width="120px" ref="ruleFormRef">
         <!--  -->
@@ -119,6 +120,16 @@ const addForm = async (formEl: FormInstance | undefined) => {
       console.log('error submit!', fields);
     }
   });
+};
+const closedialog = () => {
+  ruleFormRef.value.resetFields();
+  form.rolename = '';
+  form.rolestring = '';
+  form.sort = 1;
+  form.status = '1';
+  form.menurole = [];
+  form.text = '';
+  dialogVisible.value = false;
 };
 const editForm = () => {
   dialogVisible.value = true;

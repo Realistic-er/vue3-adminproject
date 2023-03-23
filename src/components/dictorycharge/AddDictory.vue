@@ -4,6 +4,7 @@
       v-model="dialogVisible"
       title="添加部门"
       width="50%"
+      :before-close="closedialog"
     >
       <el-form :model="form" :rules="rules" label-width="120px" ref="ruleFormRef">
         <el-form-item label="字典名称" prop="dictoryname">
@@ -77,6 +78,14 @@ const addForm = async (formEl: FormInstance | undefined) => {
       console.log('error submit!', fields);
     }
   });
+};
+const closedialog = () => {
+  ruleFormRef.value.resetFields();
+  form.dictoryname = '';
+  form.dictorytype = '';
+  form.text = '';
+  form.status = '1';
+  dialogVisible.value = false;
 };
 const editForm = () => {
   dialogVisible.value = true;

@@ -260,7 +260,19 @@ const cancelForm = (formEl: FormInstance | undefined) => {
   dialogVisible.value = false;
 };
 const handleClose = (formEl: FormInstance | undefined) => {
-  ruleFormRef.value?.clearValidate();
+  ruleFormRef.value.resetFields();
+  form.name = '';
+  form.part = '';
+  form.phone = '';
+  form.email = '';
+  form.username = '';
+  form.password = '123456';
+  form.sex = '';
+  form.status = '1';
+  form.job = '';
+  form.role = '';
+  form.text = '';
+  dialogVisible.value = false;
 };
 const editForm = () => {
   dialogVisible.value = true;

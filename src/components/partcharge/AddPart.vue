@@ -4,6 +4,7 @@
       v-model="dialogVisible"
       title="添加部门"
       width="50%"
+      :before-close="closedialog"
     >
       <el-form :model="form" :rules="rules" label-width="120px" ref="ruleFormRef">
         <!--  -->
@@ -121,6 +122,17 @@ const rules = reactive<FormRules>({
 });
 const opendialog = () => {
   dialogVisible.value = true;
+};
+const closedialog = () => {
+  ruleFormRef.value.resetFields();
+  form.forwardpart = '';
+  form.partname = '';
+  form.sort = 1;
+  form.personcharge = '';
+  form.phone = '';
+  form.email = '';
+  form.status = '1';
+  dialogVisible.value = false;
 };
 const addForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
