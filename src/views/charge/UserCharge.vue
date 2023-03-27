@@ -49,7 +49,7 @@ const getuserlist = () => {
 };
 getuserlist();
 const handleNodeClick = (data: Tree) => {
-  console.log(data.id);
+  console.log('');
 };
 const data: Tree[] = datatree;
 const defaultProps = {

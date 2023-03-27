@@ -22,7 +22,13 @@
         :key="icon">
           <component :is="icon"/>
         </el-icon>
-        <img src="@/assets/user.webp" class="imgs" alt="">
+
+        <el-popover placement="bottom" trigger="hover" popper-style="min-width: 50px;">
+          <template #reference>
+            <img src="@/assets/user.webp" class="imgs" alt="">
+          </template>
+          <el-button type="primary" link class="btn">退出</el-button>
+        </el-popover>
       </div>
     </div>
     <div class="bottom">
@@ -52,8 +58,7 @@ import { routeTag } from '../../util/type/routetype';
 const store = useStore();
 const icons = ['Search', 'FullScreen', 'Lock'];
 const isCollapse = computed(() => store.state.menu.isCollapse);
-// const routetagarray:routeTag[] = computed(() => store.state.menu.routeTagarray).value;
-const routetagarray:routeTag[] = reactive(store.state.menu.routeTagarray);
+const routetagarray:routeTag[] = computed(() => store.getters.getrouteTagarray);
 const router = useRouter();
 const route = useRoute();
 const array = ref([]);

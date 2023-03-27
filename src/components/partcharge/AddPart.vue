@@ -64,7 +64,7 @@
     </el-form>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="dialogVisible = false">取消</el-button>
+        <el-button @click="closedialog()">取消</el-button>
         <el-button type="primary" @click="addForm(ruleFormRef)">
           新建
         </el-button>

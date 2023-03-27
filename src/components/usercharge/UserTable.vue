@@ -55,7 +55,7 @@ const props = defineProps({
 const { userinfo } = toRefs(props);
 const instance = getCurrentInstance();
 const handleSelectionChange = () => {
-  console.log('123');
+  console.log('');
 };
 const handleClick = (val: userlist) => {
   instance?.proxy?.$Bus.emit('on-click', val);

@@ -2,7 +2,7 @@
   <div class="menucontainer">
     <el-aside class="sidemenu" :width="isCollapse ? '55px' : '250px'">
       <el-menu
-        :default-active="currentroute"
+        :default-active="$route.path"
         :collapse="isCollapse"
         :collapse-transition="false"
         class="el-menu-vertical-demo"
@@ -57,22 +57,12 @@
 import {
   reactive, ref, computed, toRaw,
 } from 'vue';
-import {
-  Document,
-  Menu as IconMenu,
-  Location,
-  Setting,
-} from '@element-plus/icons-vue';
-import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-import { routeTag, routearray } from '../../util/type/routetype';
+import { routearray } from '../../util/type/routetype';
 
-const router = useRouter();
 const store = useStore();
-const currentroute = ref(router.currentRoute.value.fullPath);
-const menu = JSON.parse(window.localStorage.getItem('menu'));
+const menu = ref(JSON.parse(window.localStorage.getItem('menu')));
 const isCollapse = computed(() => store.state.menu.isCollapse);
-const routetagarray:routeTag[] = computed(() => store.state.menu.routeTagarray).value;
 const routetagobject = reactive({
   name: '',
   title: '',

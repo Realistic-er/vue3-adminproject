@@ -4,7 +4,7 @@
       v-model="dialogVisible"
       title="添加岗位"
       width="50%"
-      :before-close="handleClose()"
+      :before-close="handleClose"
     >
       <el-form :model="form" :rules="rules" label-width="120px" ref="ruleFormRef">
         <!-- 1 -->
@@ -112,7 +112,7 @@
       </el-form>
       <template #footer>
       <span class="dialog-footer">
-        <el-button @click="cancelForm(ruleFormRef)">取消</el-button>
+        <el-button @click="handleClose()">取消</el-button>
         <el-button type="primary" @click="addForm(ruleFormRef)">
           新建
         </el-button>

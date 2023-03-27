@@ -8,6 +8,7 @@ const array:any = [];
 const routearray = monitor.concat(charge);
 router.beforeEach(async (to, from, next) => {
   const account = window.localStorage.getItem('account');
+  if (to.path === '/login') next();
   // 已经登录
   if (account) {
     // 第一次挂载路由

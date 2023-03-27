@@ -94,7 +94,7 @@ const beforeChange1 = (val:roleList) => (
   })
 );
 const handleSelectionChange = () => {
-  console.log('123');
+  console.log('');
 };
 const handleClick = (val: roleList) => {
   RefChilde.value.editForm();

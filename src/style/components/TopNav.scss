@@ -17,6 +17,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            .popperstyle {
+                .btn {
+                    margin-left: 10px;
+                }
+            }
             .imgs {
                 width: 50px;
                 border-radius: 15px; 

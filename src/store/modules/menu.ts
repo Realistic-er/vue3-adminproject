@@ -16,6 +16,18 @@ const menu = {
       ],
     };
   },
+  getters: {
+    getrouteTagarray: (state:menutype) => {
+      let array = [];
+      const tag = JSON.parse(window.localStorage.getItem('tag') as string);
+      if (tag === null) {
+        array = state.routeTagarray;
+      } else {
+        array = tag;
+      }
+      return array;
+    },
+  },
   mutations: {
     changecollapse: (state:menutype) => {
       state.isCollapse = !state.isCollapse;
@@ -34,6 +46,7 @@ const menu = {
           object.name = para.name;
           object.title = para.title;
           state.routeTagarray.push(object);
+          window.localStorage.setItem('tag', JSON.stringify(state.routeTagarray));
         }
       }
     },
@@ -41,6 +54,7 @@ const menu = {
     closeTag: (state:menutype, item:routeTag) => {
       const index = state.routeTagarray.findIndex((val) => val.name === item.name);
       state.routeTagarray.splice(index, 1);
+      window.localStorage.setItem('tag', JSON.stringify(state.routeTagarray));
     },
   },
 };

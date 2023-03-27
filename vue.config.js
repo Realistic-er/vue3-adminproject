@@ -21,6 +21,7 @@ module.exports = defineConfig({
   },
   //
   configureWebpack: {
+    devtool:"eval-cheap-module-source-map",
     plugins: [
       AutoImport({
         resolvers: [ElementPlusResolver()],
