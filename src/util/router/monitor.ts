@@ -68,7 +68,7 @@ const monitor:routearray[] = [
           title: '服务监控',
           icon: 'Position',
         },
-        component: () => import('@/views/monitor/SaveMonitor.vue'),
+        component: () => import('@/views/monitor/ServeMonitor.vue'),
         children: [],
       },
       // 定时任务
