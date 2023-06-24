@@ -58,7 +58,7 @@ import { routeTag } from '../../util/type/routetype';
 const store = useStore();
 const icons = ['Search', 'FullScreen', 'Lock'];
 const isCollapse = computed(() => store.state.menu.isCollapse);
-const routetagarray:routeTag[] = computed(() => store.getters.getrouteTagarray);
+const routetagarray = computed(() => store.state.menu.routeTagarray);
 const router = useRouter();
 const route = useRoute();
 const array = ref([]);
@@ -85,7 +85,7 @@ const closeTag = (item:routeTag, index:number) => {
   store.commit('closeTag', item);
   if (item.name === currentroute.name) {
     router.push({
-      name: routetagarray[index - 1].name,
+      name: routetagarray.value[index - 1].name,
     });
   }
 };

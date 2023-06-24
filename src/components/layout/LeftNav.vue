@@ -58,20 +58,31 @@ import {
   reactive, ref, computed, toRaw,
 } from 'vue';
 import { useStore } from 'vuex';
-import { routearray } from '../../util/type/routetype';
+import { routearray, routeTag } from '../../util/type/routetype';
 
 const store = useStore();
+const array:routeTag[] = reactive([
+  {
+    name: 'index',
+    title: '首页',
+  },
+]);
 const menu = ref(JSON.parse(window.localStorage.getItem('menu')));
 const isCollapse = computed(() => store.state.menu.isCollapse);
-const routetagobject = reactive({
-  name: '',
-  title: '',
-});
 // 一级菜单栏
 const saveTagIndex = (para1:routearray) => {
-  routetagobject.name = para1.name;
-  routetagobject.title = para1.meta.title;
-  store.commit('changerouteTag', routetagobject);
+  const index = array.findIndex((v) => v.title === para1.meta.title);
+  // 如果不存在
+  if (index === -1) {
+    const obj:routeTag = {
+      name: '',
+      title: '',
+    };
+    obj.name = para1.name;
+    obj.title = para1.meta.title;
+    array.push(obj);
+  }
+  store.commit('changerouteTag', array);
 };
 </script>
 
