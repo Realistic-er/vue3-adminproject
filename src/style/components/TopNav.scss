@@ -23,13 +23,16 @@
                 }
             }
             .imgs {
-                width: 50px;
+                width: 30px;
                 border-radius: 15px; 
             }
         }
     }
     .bottom {
         height: 30px;
+        display: flex;
+        flex-wrap: nowrap;
+        margin-bottom: 15px;
         .eltag {
             margin-right: 5px;
         }

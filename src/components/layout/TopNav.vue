@@ -22,13 +22,8 @@
         :key="icon">
           <component :is="icon"/>
         </el-icon>
-
-        <el-popover placement="bottom" trigger="hover" popper-style="min-width: 50px;">
-          <template #reference>
-            <img src="@/assets/user.webp" class="imgs" alt="">
-          </template>
-          <el-button type="primary" link class="btn">退出</el-button>
-        </el-popover>
+        <img src="@/assets/user.webp" class="imgs" alt="">
+        <el-button type="primary" link class="btn" @click="loginout">退出</el-button>
       </div>
     </div>
     <div class="bottom">
@@ -92,6 +87,11 @@ const closeTag = (item:routeTag, index:number) => {
 const jumpTag = (item:routeTag) => {
   router.push({
     name: item.name,
+  });
+};
+const loginout = () => {
+  router.push({
+    name: 'login',
   });
 };
 </script>
