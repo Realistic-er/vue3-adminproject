@@ -3,8 +3,7 @@
     <div class="btn">
       <!-- 新增按钮 -->
       <el-button :icon="Plus" type="primary" @click="add()">新增</el-button>
-      <el-button :icon="Edit" type="success" disabled>修改</el-button>
-      <el-button :icon="Delete" type="danger" disabled>删除</el-button>
+      <Refresh-Icon @clickToFather="refresh()"></Refresh-Icon>
     </div>
     <el-table
     id="out-table"
@@ -103,6 +102,7 @@ import {
   Delete, Edit, Search, Share, Bottom, Plus,
 } from '@element-plus/icons-vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
+import RefreshIcon from '@/components/RefreshIcon.vue';
 import getmenucharge from '../../util/api/charge/menucharge';
 import Addmenu from '../../components/menucharge/AddMenu.vue';
 
@@ -126,6 +126,12 @@ const RefPagination = ref();
 getmenucharge().then((res) => {
   tableData.value = res.data.data;
 });
+const refresh = () => {
+  ElMessage({
+    message: '刷新成功',
+    type: 'success',
+  });
+};
 const add = () => {
   RefChilde.value.opendialog();
 };

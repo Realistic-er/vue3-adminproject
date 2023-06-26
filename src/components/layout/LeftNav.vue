@@ -12,10 +12,10 @@
         active-text-color="rgb(64, 158, 255)"
         router
       >
-      <el-menu-item>
-        <img src="@/assets/user.webp" alt="">
-        <p v-show="!isCollapse" class="chargename">后台管理系统</p>
-      </el-menu-item>
+        <div class="box">
+          <img src="@/assets/user.webp" alt="">
+          <span v-show="!isCollapse" class="chargename" @click="jumpindex()">后台管理系统</span>
+        </div>
       <div
         v-for="(item, index) in menu[0].children"
         :key="index">
@@ -58,31 +58,20 @@ import {
   reactive, ref, computed, toRaw,
 } from 'vue';
 import { useStore } from 'vuex';
+import router from '@/router';
 import { routearray, routeTag } from '../../util/type/routetype';
 
 const store = useStore();
-const array:routeTag[] = reactive([
-  {
-    name: 'index',
-    title: '首页',
-  },
-]);
 const menu = ref(JSON.parse(window.localStorage.getItem('menu')));
 const isCollapse = computed(() => store.state.menu.isCollapse);
 // 一级菜单栏
-const saveTagIndex = (para1:routearray) => {
-  const index = array.findIndex((v) => v.title === para1.meta.title);
-  // 如果不存在
-  if (index === -1) {
-    const obj:routeTag = {
-      name: '',
-      title: '',
-    };
-    obj.name = para1.name;
-    obj.title = para1.meta.title;
-    array.push(obj);
-  }
-  store.commit('changerouteTag', array);
+const saveTagIndex = (para:routearray) => {
+  store.commit('changerouteTag', para);
+};
+const jumpindex = () => {
+  router.push({
+    name: 'index',
+  });
 };
 </script>
 

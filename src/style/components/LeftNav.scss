@@ -8,14 +8,26 @@
         z-index: 100;
         overflow-x: hidden;
         .el-menu {
-            img {
-                width: 30px;
-                height: 30px;
-                border-radius: 30px;
+            .box {
+                display: flex;
+                align-items: center;
+                padding: 5px 30px;
+                img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 30px;
+                }
+                .chargename {
+                    font-weight: bolder;
+                    margin-left: 10px;
+                    font-size: 20px;
+                    color: whitesmoke;;
+                }
+                .chargename:hover {
+                    cursor:pointer;
+                }
             }
-            .chargename {
-                font-weight: bolder;
-            }
+            
             height: 100%;
             ::v-deep .el-menu-item {
                 font-size: 15px;

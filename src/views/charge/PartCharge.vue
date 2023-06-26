@@ -3,6 +3,7 @@
     <div class="btn">
         <!-- 新增按钮 -->
         <el-button icon="Plus" type="primary" @click="add()">新增</el-button>
+        <Refresh-Icon @clickToFather="refresh()"></Refresh-Icon>
       </div>
     <el-table
       :data="datatree"
@@ -43,6 +44,7 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
+import RefreshIcon from '@/components/RefreshIcon.vue';
 import { part } from '../../util/type/requesrtype';
 import AddPart from '../../components/partcharge/AddPart.vue';
 import getpart from '../../util/api/charge/partcharge';
@@ -52,6 +54,12 @@ const RefChilde = ref();
 getpart().then((res) => {
   datatree.value = res.data.data.data;
 });
+const refresh = () => {
+  ElMessage({
+    message: '刷新成功',
+    type: 'success',
+  });
+};
 const handleEdit = (val) => {
   RefChilde.value.opendialog();
   RefChilde.value.form.partname = val.partname;
@@ -92,5 +100,10 @@ const add = () => {
 <style lang="scss" scoped>
 .btn {
   padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #909399;
+
 }
 </style>

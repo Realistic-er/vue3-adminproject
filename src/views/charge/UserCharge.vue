@@ -11,11 +11,12 @@
       <!--  -->
       <div class="right">
         <div class="btn">
-          <!-- 新增按钮 -->
-          <el-button icon="Plus" type="primary" @click="add()">新增</el-button>
-          <el-button icon="Edit" type="success" disabled>修改</el-button>
-          <el-button icon="Delete" type="danger" disabled>删除</el-button>
-          <el-button icon="Bottom" type="warning" @click="exportExcel()">Excel导出</el-button>
+          <div>
+            <!-- 新增按钮 -->
+            <el-button icon="Plus" type="primary" @click="add()">新增</el-button>
+            <el-button icon="Bottom" type="warning" @click="exportExcel()">Excel导出</el-button>
+          </div>
+          <Refresh-Icon @clickToFather="refresh()"></Refresh-Icon>
         </div>
         <user-table :userinfo="userinfo"></user-table>
         <!-- 分页 -->
@@ -33,6 +34,7 @@ import { reactive, ref, watch } from 'vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import UserTable from '@/components/usercharge/UserTable.vue';
 import AddUser from '@/components/usercharge/AddUser.vue';
+import RefreshIcon from '@/components/RefreshIcon.vue';
 import { datatree } from '@/util/data';
 import getuser from '../../util/api/charge/usercharge';
 
@@ -51,6 +53,12 @@ const getuserlist = () => {
 getuserlist();
 const handleNodeClick = (data: Tree) => {
   console.log('');
+};
+const refresh = () => {
+  ElMessage({
+    message: '刷新成功',
+    type: 'success',
+  });
 };
 const data: Tree[] = datatree;
 const defaultProps = {

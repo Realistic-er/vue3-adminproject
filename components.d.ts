@@ -57,6 +57,8 @@ declare module '@vue/runtime-core' {
     IconList: typeof import('./src/components/menucharge/IconList.vue')['default']
     LeftNav: typeof import('./src/components/layout/LeftNav.vue')['default']
     LoginForm: typeof import('./src/components/login/LoginForm.vue')['default']
+    PersonSetting: typeof import('./src/components/personsetting/PersonSetting.vue')['default']
+    RefreshIcon: typeof import('./src/components/RefreshIcon.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TopNav: typeof import('./src/components/layout/TopNav.vue')['default']

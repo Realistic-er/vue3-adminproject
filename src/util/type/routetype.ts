@@ -12,7 +12,7 @@ export type routearray = {
 
 export type routeTag = {
   name: string,
-  title: string,
+  title: string | undefined,
 }
 
 

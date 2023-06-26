@@ -55,7 +55,7 @@ onMounted(() => {
   const myChart = (echarts as any).init(document.getElementById('chartcontainer3'));
   myChart.setOption({
     title: {
-      text: '同名数量统计',
+      text: '',
       subtext: '纯属虚构',
       left: 'center',
     },

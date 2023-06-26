@@ -2,7 +2,6 @@
   <GlobalContainer>
     <div class="firstpage">
       <p class="text">
-        欢迎使用后台管理系统
       </p>
     </div>
   </GlobalContainer>

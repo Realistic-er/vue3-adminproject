@@ -1,4 +1,4 @@
-import { routeTag } from '../../util/type/routetype';
+import { routeTag, routearray } from '../../util/type/routetype';
 
 type menutype = {
   isCollapse: boolean,
@@ -9,6 +9,10 @@ const menu = {
     return {
       isCollapse: false,
       routeTagarray: [
+        {
+          name: 'index',
+          title: '首页',
+        },
       ],
     };
   },
@@ -21,14 +25,35 @@ const menu = {
       state.isCollapse = !state.isCollapse;
     },
     // change
-    changerouteTag: (state:menutype, para:routeTag[]) => {
-      state.routeTagarray = para;
+    changerouteTag: (state:menutype, para:routearray) => {
+      const index = state.routeTagarray.findIndex((v) => v.title === para.meta.title);
+      // 如果不存在
+      if (index === -1) {
+        const obj:routeTag = {
+          name: '',
+          title: '',
+        };
+        obj.name = para.name;
+        obj.title = para.meta.title;
+        state.routeTagarray.push(obj);
+      }
     },
     // 删除tag
     closeTag: (state:menutype, item:routeTag) => {
       const index = state.routeTagarray.indexOf(item);
       state.routeTagarray.splice(index, 1);
       // window.localStorage.setItem('tag', JSON.stringify(state.routeTagarray));
+    },
+    // jumpsetting
+    jumpsetting: (state:menutype) => {
+      const index = state.routeTagarray.findIndex((v) => v.title === '个人设置');
+      if (index === -1) {
+        const obj:routeTag = {
+          name: 'setting',
+          title: '个人设置',
+        };
+        state.routeTagarray.push(obj);
+      }
     },
   },
 };

@@ -1,11 +1,12 @@
 import router from './router';
 import monitor from './util/router/monitor';
 import charge from './util/router/charge';
+import setting from './util/router/setting';
 import layoutpart from './util/router/layoutpart';
 
 let registerRouteFresh = true;
 const array:any = [];
-const routearray = monitor.concat(charge);
+const routearray = monitor.concat(charge, setting);
 router.beforeEach(async (to, from, next) => {
   const account = window.localStorage.getItem('account');
   if (to.path === '/login') next();

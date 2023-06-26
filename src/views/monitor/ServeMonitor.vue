@@ -1,11 +1,12 @@
 <template>
   <GlobalContainer>
     <div class="btn">
-      <!-- 新增按钮 -->
-      <el-button :icon="Plus" type="primary" @click="add()">新增</el-button>
-      <el-button :icon="Edit" type="success" disabled>修改</el-button>
-      <el-button :icon="Delete" type="danger" disabled>删除</el-button>
-      <el-button :icon="Bottom" type="warning" @click="exportExcel()">Excel导出</el-button>
+      <div>
+        <!-- 新增按钮 -->
+        <el-button :icon="Plus" type="primary" @click="add()">新增</el-button>
+        <el-button :icon="Bottom" type="warning" @click="exportExcel()">Excel导出</el-button>
+      </div>
+      <Refresh-Icon @clickToFather="refresh()"></Refresh-Icon>
     </div>
     <el-table
     id="out-table"
@@ -68,6 +69,7 @@ import { ElMessage, ElMessageBox } from 'element-plus';
 // 引入导出Excel表格依赖
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
+import RefreshIcon from '@/components/RefreshIcon.vue';
 import getinfoList from '../../util/api/monitor/servemonitor';
 import AddServe from '../../components/servemonitor/AddServe.vue';
 import ElPagination from '../../components/ElPagination.vue';
@@ -86,6 +88,12 @@ const RefPagination = ref();
 getinfoList().then((res) => {
   tableData.value = res.data.data.data;
 });
+const refresh = () => {
+  ElMessage({
+    message: '刷新成功',
+    type: 'success',
+  });
+};
 const add = () => {
   RefChilde.value.opendialog();
 };

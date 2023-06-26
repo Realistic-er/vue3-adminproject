@@ -22,7 +22,7 @@
         :key="icon">
           <component :is="icon"/>
         </el-icon>
-        <img src="@/assets/user.webp" class="imgs" alt="">
+        <img src="@/assets/user.webp" class="imgs" alt="" @click="jumpsetting()">
         <el-button type="primary" link class="btn" @click="loginout">退出</el-button>
       </div>
     </div>
@@ -83,6 +83,12 @@ const closeTag = (item:routeTag, index:number) => {
       name: routetagarray.value[index - 1].name,
     });
   }
+};
+const jumpsetting = () => {
+  router.push({
+    name: 'setting',
+  });
+  store.commit('jumpsetting');
 };
 const jumpTag = (item:routeTag) => {
   router.push({

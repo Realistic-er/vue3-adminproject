@@ -4,8 +4,7 @@
       <div class="btn">
         <!-- 新增按钮 -->
         <el-button icon="Plus" type="primary" @click="add()">新增</el-button>
-        <el-button icon="Edit" type="success" disabled >修改</el-button>
-        <el-button icon="Delete" type="danger" disabled>删除</el-button>
+        <Refresh-Icon @clickToFather="refresh()"></Refresh-Icon>
       </div>
       <el-table
       id="out-table"
@@ -56,6 +55,7 @@ import {
   reactive, ref, defineProps, toRefs,
 } from 'vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
+import RefreshIcon from '@/components/RefreshIcon.vue';
 import { roleList } from '../../util/type/requesrtype';
 import getrole from '../../util/api/charge/rolecharge';
 import AddRole from '../../components/rolecharge/AddRole.vue';
@@ -65,6 +65,12 @@ const RefChilde = ref();
 getrole().then((res) => {
   roleinfo.value = res.data.data.data;
 });
+const refresh = () => {
+  ElMessage({
+    message: '刷新成功',
+    type: 'success',
+  });
+};
 const add = () => {
   RefChilde.value.opendialog();
 };
@@ -134,6 +140,18 @@ const handleDelete = (val: roleList) => {
 
 <style lang="scss" scoped>
 .btn {
-    padding-bottom: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #909399;
+  .fresh {
+    display: flex;
+    align-items: center;
+    padding-right: 15px;
+    span {
+      margin-left: 5px;
+    }
+  }
 }
 </style>
