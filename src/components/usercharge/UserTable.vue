@@ -86,4 +86,7 @@ const handleDelete = (val:userlist) => {
 </script>
 
 <style lang="scss" scoped>
+.containeruser {
+  height: 100%;
+}
 </style>

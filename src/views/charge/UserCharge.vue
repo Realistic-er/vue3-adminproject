@@ -18,10 +18,11 @@
           <el-button icon="Bottom" type="warning" @click="exportExcel()">Excel导出</el-button>
         </div>
         <user-table :userinfo="userinfo"></user-table>
+        <!-- 分页 -->
+        <el-pagination ref="RefPagination"/>
       </div>
       <!--  -->
       </div>
-
       <!-- dialog -->
       <add-user ref="RefChilde"></add-user>
   </GlobalContainer>

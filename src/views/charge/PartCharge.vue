@@ -34,6 +34,8 @@
     </el-table-column>
     </el-table>
     <!--  -->
+    <!-- 分页 -->
+    <el-pagination ref="RefPagination"/>
     <add-part ref="RefChilde"></add-part>
   </GlobalContainer>
 </template>

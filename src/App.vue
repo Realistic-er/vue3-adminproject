@@ -6,6 +6,7 @@
 
 <style lang="scss">
   @import "../src/style/RemoveDefault.scss";
+  @import '@/style/elementui/ElementUi.scss';
   .routecontainer {
     width:100%;
     height: 100%;

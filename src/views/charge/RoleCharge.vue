@@ -45,6 +45,8 @@
       </el-table>
       </div>
       <!--  -->
+      <!-- 分页 -->
+      <el-pagination ref="RefPagination"/>
       <add-role ref="RefChilde"></add-role>
   </GlobalContainer>
 </template>
