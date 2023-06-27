@@ -4,6 +4,10 @@ type menutype = {
   isCollapse: boolean,
   routeTagarray: routeTag[],
 }
+type obj1 = {
+  name: string,
+  title: string,
+}
 const menu = {
   state() {
     return {
@@ -36,6 +40,19 @@ const menu = {
         obj.name = para.name;
         obj.title = para.meta.title;
         state.routeTagarray.push(obj);
+      }
+    },
+    changeroute: (state:menutype, para:obj1) => {
+      const index = state.routeTagarray.findIndex((v) => v.title === para.title);
+      // 如果不存在
+      if (index === -1) {
+        // const obj:routeTag = {
+        //   name: '',
+        //   title: '',
+        // };
+        // obj.name = para.name;
+        // obj.title = para.meta.title;
+        state.routeTagarray.push(para);
       }
     },
     // 删除tag

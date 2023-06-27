@@ -1,12 +1,13 @@
 import router from './router';
 import monitor from './util/router/monitor';
 import charge from './util/router/charge';
-import setting from './util/router/setting';
 import layoutpart from './util/router/layoutpart';
+import setting from './util/router/setting';
 
 let registerRouteFresh = true;
 const array:any = [];
-const routearray = monitor.concat(charge, setting);
+export const routearray = layoutpart.concat(charge, monitor, setting);
+// console.log(routearray);
 router.beforeEach(async (to, from, next) => {
   const account = window.localStorage.getItem('account');
   if (to.path === '/login') next();
@@ -15,10 +16,10 @@ router.beforeEach(async (to, from, next) => {
     // 第一次挂载路由
     if (registerRouteFresh) {
       routearray.forEach((v) => {
-        layoutpart[0].children.push(v);
+        // console.log(v);
+        router.addRoute(v);
       });
-      router.addRoute(layoutpart[0]);
-      window.localStorage.setItem('menu', JSON.stringify(layoutpart));
+      window.localStorage.setItem('menu', JSON.stringify(routearray));
       next({ ...to, replace: true });
       registerRouteFresh = false;
     } else {

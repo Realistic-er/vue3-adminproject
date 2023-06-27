@@ -3,7 +3,6 @@ import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import mitt from 'mitt';
-import echarts from '@/util/charts';
 import GlobalContainer from './components/GlobalContainer.vue';
 import App from './App.vue';
 import router from './permission';
@@ -20,4 +19,3 @@ for (const [key, component] of Object
 app.component('GlobalContainer', GlobalContainer).use(store).use(router).use(ElementPlus)
   .mount('#app');
 app.config.globalProperties.$Bus = Mit;
-app.provide('$echarts', echarts);

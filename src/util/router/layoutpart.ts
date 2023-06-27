@@ -1,9 +1,10 @@
 import { routearray } from '../type/routetype';
+import filterrouter from '../function';
 
 const layoutpart:routearray[] = [
   {
-    path: '',
-    name: 'layoutpart',
+    path: '/first',
+    name: 'first',
     component: () => import('@/page/LayoutPart.vue'),
     meta: {
       role: [],

@@ -1,19 +1,29 @@
 import { routearray } from '../type/routetype';
 import filterrouter from '../function';
 
-const monitor:routearray[] = [
+const setting:routearray[] = [
   {
-    path: 'setting',
-    name: 'setting',
+    path: '/person',
+    name: 'person',
+    component: () => import('@/page/LayoutPart.vue'),
     meta: {
       role: [],
-      title: '个人设置',
-      icon: 'Setting',
     },
-    component: () => import('@/views/setting/PersonSetting.vue'),
     children: [
+      {
+        path: 'setting',
+        name: 'setting',
+        meta: {
+          role: [],
+          title: '个人设置',
+          icon: 'Setting',
+        },
+        component: () => import('@/views/setting/PersonSetting.vue'),
+        children: [
+        ],
+      },
     ],
   },
 ];
 
-export default filterrouter(monitor);
+export default setting;

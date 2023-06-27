@@ -67,7 +67,9 @@ const submitForm = async (formEl: FormInstance | undefined) => {
             message: '欢迎使用后台管理系统',
             type: 'success',
           });
-          router.push('/index');
+          router.push({
+            name: 'index',
+          });
           window.localStorage.setItem('account', ruleForm.username);
         } else {
           ElMessage.error('用户名称或者密码不正确,请重新尝试');

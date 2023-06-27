@@ -17,15 +17,16 @@
           <span v-show="!isCollapse" class="chargename" @click="jumpindex()">后台管理系统</span>
         </div>
       <div
-        v-for="(item, index) in menu[0].children"
+        v-for="(item, index) in menu"
         :key="index">
           <el-menu-item
-            v-if="item.children.length === 0"
-            :index="'/' + item.path" @click="saveTagIndex(item)">
+            v-if="item.children.length === 1"
+            :index="item.path + '/' + item.children[0].path"
+            @click="saveTagIndex(item.children[0])">
             <el-icon style="margin-right:10px;">
-              <component :is="item.meta.icon"/>
+              <component :is="item.children[0].meta.icon"/>
             </el-icon>
-            <span>{{ item.meta.title }}</span>
+            <span>{{ item.children[0].meta.title }}</span>
           </el-menu-item>
           <template v-else>
             <el-sub-menu :index="index.toString()">
@@ -37,7 +38,7 @@
               </template>
               <el-menu-item v-for="(menu, index) in item.children"
               :key="index"
-              :index="'/' + item.path + '/' + menu.path"
+              :index="item.path + '/' + menu.path"
               @click="saveTagIndex(menu)">
               <el-icon style="margin-right:10px;">
                 <component :is="menu.meta.icon"/>
@@ -66,6 +67,7 @@ const menu = ref(JSON.parse(window.localStorage.getItem('menu')));
 const isCollapse = computed(() => store.state.menu.isCollapse);
 // 一级菜单栏
 const saveTagIndex = (para:routearray) => {
+  // console.log(para);
   store.commit('changerouteTag', para);
 };
 const jumpindex = () => {

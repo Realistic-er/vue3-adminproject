@@ -18,6 +18,11 @@
       </div>
       <!-- 右侧图标集合 -->
       <div class="icons">
+        <el-button type="primary" icon="Search" text circle
+        size="large" class="searchbtn" @click="opendialog()">
+          Search
+          <span class="keyboard">CRTL+K</span>
+        </el-button>
         <el-icon :size="20" v-for="icon in icons"
         :key="icon">
           <component :is="icon"/>
@@ -39,6 +44,8 @@
       {{ item.title }}
     </el-tag>
     </div>
+    <!-- 组件 -->
+    <Search-Dialog ref="RefChilde"></Search-Dialog>
   </div>
 </template>
 
@@ -48,10 +55,12 @@ import {
 } from 'vue';
 import { useRouter, useRoute, RouteRecordRaw } from 'vue-router';
 import { useStore } from 'vuex';
+import SearchDialog from '../SearchDialog.vue';
 import { routeTag } from '../../util/type/routetype';
 
 const store = useStore();
-const icons = ['Search', 'FullScreen', 'Lock'];
+const RefChilde = ref();
+const icons = ['FullScreen', 'Lock'];
 const isCollapse = computed(() => store.state.menu.isCollapse);
 const routetagarray = computed(() => store.state.menu.routeTagarray);
 const router = useRouter();
@@ -99,6 +108,9 @@ const loginout = () => {
   router.push({
     name: 'login',
   });
+};
+const opendialog = () => {
+  RefChilde.value.opendialog();
 };
 </script>
 

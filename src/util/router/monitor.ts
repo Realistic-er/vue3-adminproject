@@ -3,13 +3,14 @@ import filterrouter from '../function';
 
 const monitor:routearray[] = [
   {
-    path: 'monitor',
+    path: '/monitor',
     name: 'monitor',
     meta: {
       role: [],
       title: '系统监控',
       icon: 'Notification',
     },
+    component: () => import('@/page/LayoutPart.vue'),
     children: [
       // 数据监控
       {

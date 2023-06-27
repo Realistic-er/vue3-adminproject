@@ -14,21 +14,37 @@
             }
         }
         .icons {
-            width: 170px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            .searchbtn {
+                width: 200px;
+                border-radius: 100px;
+                .keyboard {
+                    margin-left:15px;
+                }
+            }
+            .searchbtn:hover {
+                border: 2px solid #409eff;
+            }
             .popperstyle {
                 .btn {
                     margin-left: 10px;
                 }
             }
+            i {
+                margin-left: 10px;
+            }
             .imgs {
                 width: 30px;
-                border-radius: 15px; 
+                border-radius: 15px;
+                margin-left: 10px;
             }
             .imgs:hover {
                 cursor: pointer;
+            }
+            .btn {
+                margin-left: 10px;
             }
         }
     }

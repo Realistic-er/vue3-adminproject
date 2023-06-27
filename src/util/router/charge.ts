@@ -3,13 +3,14 @@ import filterrouter from '../function';
 
 const charge:routearray[] = [
   {
-    path: 'charge',
+    path: '/charge',
     name: 'charge',
     meta: {
       role: [],
       title: '系统管理',
       icon: 'Odometer',
     },
+    component: () => import('@/page/LayoutPart.vue'),
     children: [
       // 数据监控
       {

@@ -61,6 +61,7 @@ declare module '@vue/runtime-core' {
     RefreshIcon: typeof import('./src/components/RefreshIcon.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchDialog: typeof import('./src/components/SearchDialog.vue')['default']
     TopNav: typeof import('./src/components/layout/TopNav.vue')['default']
     UserTable: typeof import('./src/components/usercharge/UserTable.vue')['default']
   }
