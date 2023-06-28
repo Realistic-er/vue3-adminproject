@@ -58,8 +58,8 @@ export const data = [
             label: '服务监控',
           },
           {
-            value: '定时任务',
-            label: '定时任务',
+            value: '接口设计',
+            label: '接口设计',
           },
         ],
       },

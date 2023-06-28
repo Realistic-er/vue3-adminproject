@@ -6,7 +6,7 @@ const monitor:routearray[] = [
     path: '/monitor',
     name: 'monitor',
     meta: {
-      role: [],
+      role: ['admin', 'staff', 'visit'],
       title: '系统监控',
       icon: 'Notification',
     },
@@ -72,13 +72,13 @@ const monitor:routearray[] = [
         component: () => import('@/views/monitor/ServeMonitor.vue'),
         children: [],
       },
-      // 定时任务
+      // 接口设计
       {
         path: 'timetask',
         name: 'timetask',
         meta: {
           role: ['admin', 'staff', 'visit'],
-          title: '定时任务',
+          title: '接口设计',
           icon: 'Discount',
         },
         component: () => import('@/views/monitor/TimeTask.vue'),

@@ -9,10 +9,12 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AddDictory: typeof import('./src/components/dictorycharge/AddDictory.vue')['default']
     AddJob: typeof import('./src/components/jobcharge/AddJob.vue')['default']
+    AddLabel: typeof import('./src/components/timetask/AddLabel.vue')['default']
     AddMenu: typeof import('./src/components/menucharge/AddMenu.vue')['default']
     AddPart: typeof import('./src/components/partcharge/AddPart.vue')['default']
     AddRole: typeof import('./src/components/rolecharge/AddRole.vue')['default']
     AddServe: typeof import('./src/components/servemonitor/AddServe.vue')['default']
+    AddTask: typeof import('./src/components/timetask/AddTask.vue')['default']
     AddUser: typeof import('./src/components/usercharge/AddUser.vue')['default']
     Div1Son1: typeof import('./src/components/datamonitor/Div1Son1.vue')['default']
     Div2Son2: typeof import('./src/components/datamonitor/Div2Son2.vue')['default']

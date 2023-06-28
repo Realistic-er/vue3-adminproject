@@ -7,8 +7,8 @@
 import {
   reactive, ref, defineComponent, inject, onMounted,
 } from 'vue';
+import * as echarts from 'echarts';
 
-const echarts = inject('$echarts');
 onMounted(() => {
   const myChart = (echarts as any).init(document.getElementById('chartcontainer1'));
   myChart.setOption({

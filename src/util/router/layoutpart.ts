@@ -8,6 +8,7 @@ const layoutpart:routearray[] = [
     component: () => import('@/page/LayoutPart.vue'),
     meta: {
       role: [],
+      title: '',
     },
     children: [
       {

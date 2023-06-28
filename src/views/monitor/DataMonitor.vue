@@ -23,9 +23,9 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
-// import Div1Son1 from '../../components/datamonitor/Div1Son1.vue';
-// import Div2Son2 from '../../components/datamonitor/Div2Son2.vue';
-// import Div3Son3 from '../../components/datamonitor/Div3Son3.vue';
+import Div1Son1 from '../../components/datamonitor/Div1Son1.vue';
+import Div2Son2 from '../../components/datamonitor/Div2Son2.vue';
+import Div3Son3 from '../../components/datamonitor/Div3Son3.vue';
 import Div4Son4 from '../../components/datamonitor/Div4Son4.vue';
 </script>
 

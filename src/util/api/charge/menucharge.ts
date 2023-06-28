@@ -77,7 +77,7 @@ export const totalroute:routesign[] = [
         },
         children: [],
       },
-      // 定时任务
+      // 接口设计
       {
         path: 'dictorycharge',
         name: 'dictorycharge',
@@ -154,13 +154,13 @@ export const totalroute:routesign[] = [
         },
         children: [],
       },
-      // 定时任务
+      // 接口设计
       {
         path: 'timetask',
         name: 'timetask',
         meta: {
           role: ['admin', 'staff', 'visit'],
-          title: '定时任务',
+          title: '接口设计',
           icon: 'Discount',
         },
         children: [],

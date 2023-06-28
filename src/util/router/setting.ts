@@ -7,14 +7,15 @@ const setting:routearray[] = [
     name: 'person',
     component: () => import('@/page/LayoutPart.vue'),
     meta: {
-      role: [],
+      role: ['admin', 'staff', 'visit'],
+      title: '',
     },
     children: [
       {
         path: 'setting',
         name: 'setting',
         meta: {
-          role: [],
+          role: ['admin', 'staff', 'visit'],
           title: '个人设置',
           icon: 'Setting',
         },
@@ -26,4 +27,4 @@ const setting:routearray[] = [
   },
 ];
 
-export default setting;
+export default filterrouter(setting);

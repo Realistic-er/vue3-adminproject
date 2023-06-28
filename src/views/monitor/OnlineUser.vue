@@ -1,5 +1,13 @@
 <template>
   <GlobalContainer>
+    <div class="btn">
+      <div>
+        <!-- 新增按钮 -->
+        <el-button :icon="Plus" type="primary" @click="add()">新增</el-button>
+        <!-- <el-button :icon="Bottom" type="warning" @click="exportExcel()">Excel导出</el-button> -->
+      </div>
+      <Refresh-Icon @clickToFather="refresh()"></Refresh-Icon>
+    </div>
     <el-table
     id="out-table"
     :data="tableData"

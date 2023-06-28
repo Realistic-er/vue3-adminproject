@@ -6,7 +6,7 @@ const charge:routearray[] = [
     path: '/charge',
     name: 'charge',
     meta: {
-      role: [],
+      role: ['admin', 'staff', 'visit'],
       title: '系统管理',
       icon: 'Odometer',
     },
@@ -72,7 +72,7 @@ const charge:routearray[] = [
         component: () => import('@/views/charge/PartCharge.vue'),
         children: [],
       },
-      // 定时任务
+      // 接口设计
       {
         path: 'dictorycharge',
         name: 'dictorycharge',
