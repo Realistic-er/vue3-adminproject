@@ -1,52 +1,50 @@
 <template>
   <GlobalContainer>
-    <div class="containeruser">
-      <div class="btn">
-        <!-- 新增按钮 -->
-        <el-button icon="Plus" type="primary" @click="add()">新增</el-button>
-        <Refresh-Icon @clickToFather="refresh()"></Refresh-Icon>
-      </div>
-      <el-table
-      id="out-table"
-      :data="roleinfo"
-      :border="true"
-      style="width: 100%"
-      @selection-change="handleSelectionChange">
-        <el-table-column type="selection" width="55" />
-        <el-table-column label="序号" type="index" width="50" />
-        <el-table-column prop="rolename" label="角色名称" />
-        <el-table-column prop="rolestring" label="权限字符" />
-        <el-table-column prop="sort" label="显示顺序" />
-        <!--  -->
-        <el-table-column prop="status" label="状态">
-          <template #default="scope">
-            <el-switch
-              v-model="scope.row.status"
-              active-value="1"
-              inactive-value="2"
-              @change="beforeChange1(scope.row)"
-            />
-          </template>
-        </el-table-column>
-        <!--  -->
-        <el-table-column prop="time" label="创建时间" />
-        <!--  -->
-        <el-table-column fixed="right" label="操作">
-          <template #default="scope">
-            <el-button link type="primary" size="small" @click="handleClick(scope.row)"
-              >修改</el-button
-            >
-            <el-button link type="primary" size="small"
-            @click="handleDelete(scope.row)">删除</el-button>
-          </template>
-        </el-table-column>
-        <!--  -->
-      </el-table>
-      </div>
+    <div class="btn">
+      <!-- 新增按钮 -->
+      <el-button icon="Plus" type="primary" @click="add()">新增</el-button>
+      <Refresh-Icon @clickToFather="refresh()"></Refresh-Icon>
+    </div>
+    <el-table
+    id="out-table"
+    :data="roleinfo"
+    :border="true"
+    style="width: 100%"
+    @selection-change="handleSelectionChange">
+      <el-table-column type="selection" width="55" />
+      <el-table-column label="序号" type="index" width="50" />
+      <el-table-column prop="rolename" label="角色名称" />
+      <el-table-column prop="rolestring" label="权限字符" />
+      <el-table-column prop="sort" label="显示顺序" />
       <!--  -->
-      <!-- 分页 -->
-      <el-pagination ref="RefPagination"/>
-      <add-role ref="RefChilde"></add-role>
+      <el-table-column prop="status" label="状态">
+        <template #default="scope">
+          <el-switch
+            v-model="scope.row.status"
+            active-value="1"
+            inactive-value="2"
+            @change="beforeChange1(scope.row)"
+          />
+        </template>
+      </el-table-column>
+      <!--  -->
+      <el-table-column prop="time" label="创建时间" />
+      <!--  -->
+      <el-table-column fixed="right" label="操作">
+        <template #default="scope">
+          <el-button link type="primary" size="small" @click="handleClick(scope.row)"
+            >修改</el-button
+          >
+          <el-button link type="primary" size="small"
+          @click="handleDelete(scope.row)">删除</el-button>
+        </template>
+      </el-table-column>
+      <!--  -->
+    </el-table>
+    <!--  -->
+    <!-- 分页 -->
+    <el-pagination ref="RefPagination"/>
+    <add-role ref="RefChilde"></add-role>
   </GlobalContainer>
 </template>
 
@@ -139,19 +137,5 @@ const handleDelete = (val: roleList) => {
 </script>
 
 <style lang="scss" scoped>
-.btn {
-  padding-bottom: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: #909399;
-  .fresh {
-    display: flex;
-    align-items: center;
-    padding-right: 15px;
-    span {
-      margin-left: 5px;
-    }
-  }
-}
+@import "../../style/views/JobCharge.scss";
 </style>

@@ -24,7 +24,7 @@
           <span class="keyboard">CRTL+K</span>
         </el-button>
         <el-icon :size="20" v-for="icon in icons"
-        :key="icon">
+        :key="icon" @click="handleclick(icon)">
           <component :is="icon"/>
         </el-icon>
         <img src="@/assets/user.webp" class="imgs" alt="" @click="jumpsetting()">
@@ -46,6 +46,7 @@
     </div>
     <!-- 组件 -->
     <Search-Dialog ref="RefChilde"></Search-Dialog>
+
   </div>
 </template>
 
@@ -55,11 +56,13 @@ import {
 } from 'vue';
 import { useRouter, useRoute, RouteRecordRaw } from 'vue-router';
 import { useStore } from 'vuex';
+import screenfull from 'screenfull';
 import SearchDialog from '../SearchDialog.vue';
 import { routeTag } from '../../util/type/routetype';
 
 const store = useStore();
 const RefChilde = ref();
+const isscreen = computed(() => store.state.menu.isscreen);
 const icons = ['FullScreen', 'Lock'];
 const isCollapse = computed(() => store.state.menu.isCollapse);
 const routetagarray = computed(() => store.state.menu.routeTagarray);
@@ -83,6 +86,13 @@ watch(() => route.matched, (val) => {
 }, { immediate: true, deep: true });
 const clickIcon = () => {
   store.commit('changecollapse');
+};
+const handleclick = (icon) => {
+  if (icon === 'Lock') {
+    store.commit('lock');
+  } else {
+    screenfull.toggle();
+  }
 };
 const closeTag = (item:routeTag, index:number) => {
   const currentroute = router.currentRoute.value;

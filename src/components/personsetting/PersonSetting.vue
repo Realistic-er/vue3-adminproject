@@ -90,7 +90,7 @@
       <span class="dialog-footer">
         <el-button @click="closedialog()">取消</el-button>
         <el-button type="primary" @click="addForm(ruleFormRef)">
-          新建
+          编辑
         </el-button>
       </span>
     </template>
@@ -102,6 +102,7 @@
 import {
   reactive, ref, defineExpose, toRaw, unref, watch,
 } from 'vue';
+import img1 from '@/assets/user.webp';
 import type {
   FormInstance, FormRules, UploadProps, UploadInstance,
 } from 'element-plus';
@@ -149,15 +150,7 @@ const rolelist = reactive([
     value: 3,
   },
 ]);
-const checked1 = ref(false);
-const checked2 = ref(false);
-const treedata = ref();
-const data: Tree[] = datalist;
-const defaultProps = {
-  children: 'children',
-  label: 'label',
-  id: 'id',
-};
+const img = ref(img1);
 const ruleFormRef = ref<FormInstance>();
 const dialogVisible = ref(false);
 const form = reactive({
@@ -226,6 +219,7 @@ const addForm = async (formEl: FormInstance | undefined) => {
 };
 const closedialog = () => {
   ruleFormRef.value.resetFields();
+  form.imageUrl = img.value;
   form.name = '';
   form.sex = '';
   form.age = '';

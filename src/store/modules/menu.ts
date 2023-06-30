@@ -3,6 +3,7 @@ import { routeTag, routearray } from '../../util/type/routetype';
 type menutype = {
   isCollapse: boolean,
   routeTagarray: routeTag[],
+  isscreen: boolean,
 }
 type obj1 = {
   name: string,
@@ -18,6 +19,7 @@ const menu = {
           title: '首页',
         },
       ],
+      isscreen: false,
     };
   },
   getters: {
@@ -71,6 +73,10 @@ const menu = {
         };
         state.routeTagarray.push(obj);
       }
+    },
+    // 锁屏
+    lock: (state:menutype) => {
+      state.isscreen = !state.isscreen;
     },
   },
 };

@@ -57,6 +57,7 @@ declare module '@vue/runtime-core' {
     GlobalContainer: typeof import('./src/components/GlobalContainer.vue')['default']
     IconList: typeof import('./src/components/menucharge/IconList.vue')['default']
     LeftNav: typeof import('./src/components/layout/LeftNav.vue')['default']
+    LockScreen: typeof import('./src/components/LockScreen.vue')['default']
     LoginForm: typeof import('./src/components/login/LoginForm.vue')['default']
     PersonSetting: typeof import('./src/components/personsetting/PersonSetting.vue')['default']
     RefreshIcon: typeof import('./src/components/RefreshIcon.vue')['default']

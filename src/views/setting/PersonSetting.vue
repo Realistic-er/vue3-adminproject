@@ -1,28 +1,26 @@
 <template>
   <GlobalContainer>
-    <div>
-      <el-descriptions
-        class="margin-top"
-        title="个人信息"
-        :column="2"
-        border
-      >
-        <template #extra>
-          <el-button type="primary" @click="edit()">编辑</el-button>
+    <el-descriptions
+      class="margin-top"
+      title="个人信息"
+      :column="2"
+      border
+    >
+      <template #extra>
+        <el-button type="primary" @click="edit()">编辑</el-button>
+      </template>
+      <el-descriptions-item v-for="item in useinfolist" :key="item">
+        <template #label>
+          <div class="cell-item">
+            <el-icon>
+              <component :is="item.icon"/>
+            </el-icon>
+            {{ item.label }}
+          </div>
         </template>
-        <el-descriptions-item v-for="item in useinfolist" :key="item">
-          <template #label>
-            <div class="cell-item">
-              <el-icon>
-                <component :is="item.icon"/>
-              </el-icon>
-              {{ item.label }}
-            </div>
-          </template>
-          {{ item.value }}
-        </el-descriptions-item>
-      </el-descriptions>
-    </div>
+        {{ item.value }}
+      </el-descriptions-item>
+    </el-descriptions>
 
     <!-- 新增dialog -->
     <Person-Setting ref="RefChilde"></Person-Setting>
@@ -95,7 +93,7 @@ const useinfolist:useinfo[] = [
 const RefChilde = ref();
 const edit = () => {
   RefChilde.value.opendialog();
-  RefChilde.value.form.imageUrl = img;
+  RefChilde.value.form.imageUrl = img.value;
   RefChilde.value.form.name = useinfolist[0].value;
   RefChilde.value.form.sex = useinfolist[1].value;
   RefChilde.value.form.age = useinfolist[2].value;
