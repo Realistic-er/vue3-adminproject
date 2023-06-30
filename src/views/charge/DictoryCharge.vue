@@ -55,6 +55,7 @@ import {
   Delete, Edit, Search, Share, Bottom, Plus,
 } from '@element-plus/icons-vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
+import { useRouter } from 'vue-router';
 // 引入导出Excel表格依赖
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
@@ -63,9 +64,25 @@ import getdictory from '../../util/api/charge/dictorycharge';
 import ElPagination from '../../components/ElPagination.vue';
 import AddDictory from '../../components/dictorycharge/AddDictory.vue';
 
+type dictory = {
+  dictoryname: string,
+  dictorytype: string,
+  status: string,
+  text: string,
+  time: string,
+};
+type dictorymore = {
+  '字典名称': string,
+  '字典类型': string,
+  '状态': string,
+  '创建时间': string,
+  '备注': string,
+};
 const tableData = ref([]);
 const RefChilde = ref();
 const RefPagination = ref();
+const router = useRouter();
+const multipleSelection = ref([]);
 getdictory().then((res) => {
   tableData.value = res.data.data.data;
 });
@@ -110,26 +127,34 @@ const handleDelete = (val) => {
     });
 };
 const handleSelectionChange = (val) => {
-  console.log(val);
+  multipleSelection.value = val;
 };
 
 // 导出表格  按钮点击后触发事件
 const exportExcel = () => {
-  /* 从表生成工作簿对象 */
-  const wb = XLSX.utils.table_to_book(document.querySelector('#out-table'));
-  /* 获取二进制字符串作为输出 */
-  const wbout = XLSX.write(wb, {
-    bookType: 'xlsx',
-    bookSST: true,
-    type: 'array',
-  });
-  try {
-    FileSaver.saveAs(
-      new Blob([wbout], { type: 'application/octet-stream' }),
-      'idea.xlsx',
-    );
-  } catch (e) {
-    if (typeof console !== 'undefined') console.log(e, wbout);
+  const wb = XLSX.utils.book_new();
+  let wbout;
+  if (multipleSelection.value.length > 0) {
+    const ws = XLSX.utils.json_to_sheet(multipleSelection.value);
+    XLSX.utils.book_append_sheet(wb, ws, `${router.currentRoute.value.meta.title}`); // 工作簿名称
+    wbout = XLSX.writeFile(wb, `${router.currentRoute.value.meta.title}.xlsx`); // 保存的文件名
+  } else {
+    /* 从表生成工作簿对象 */
+    const wb1 = XLSX.utils.table_to_book(document.querySelector('#out-table'));
+    /* 获取二进制字符串作为输出 */
+    wbout = XLSX.write(wb1, {
+      bookType: 'xlsx',
+      bookSST: true,
+      type: 'array',
+    });
+    try {
+      FileSaver.saveAs(
+        new Blob([wbout], { type: 'application/octet-stream' }),
+        `${router.currentRoute.value.meta.title}.xlsx`,
+      );
+    } catch (e) {
+      if (typeof console !== 'undefined') console.log(e, wbout);
+    }
   }
   return wbout;
 };

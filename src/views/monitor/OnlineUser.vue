@@ -1,11 +1,6 @@
 <template>
   <GlobalContainer>
     <div class="btn">
-      <div>
-        <!-- 新增按钮 -->
-        <el-button :icon="Plus" type="primary" @click="add()">新增</el-button>
-        <!-- <el-button :icon="Bottom" type="warning" @click="exportExcel()">Excel导出</el-button> -->
-      </div>
       <Refresh-Icon @clickToFather="refresh()"></Refresh-Icon>
     </div>
     <el-table
@@ -48,6 +43,7 @@ import {
   Delete, Edit, Search, Share, Bottom, Plus,
 } from '@element-plus/icons-vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
+import RefreshIcon from '@/components/RefreshIcon.vue';
 import getonlineuser from '../../util/api/monitor/onlineuser';
 
 type job = {
@@ -116,9 +112,26 @@ const handleBlack = (val:scope) => {
       });
   }
 };
-
+const refresh = () => {
+  ElMessage({
+    message: '刷新成功',
+    type: 'success',
+  });
+};
 </script>
 
 <style lang="scss" scoped>
-@import "../../style/views/JobCharge.scss";
+.btn {
+  padding-bottom: 40px;
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: space-between; */
+  /* color: #909399; */
+  position: relative;
+  .fresh {
+    padding-right: 15px;
+    position: absolute;
+    right: 0;
+  }
+}
 </style>

@@ -7,9 +7,9 @@
         :column="2"
         border
       >
-        <!-- <template #extra>
-          <el-button type="primary" @click="add()">编辑</el-button>
-        </template> -->
+        <template #extra>
+          <el-button type="primary" @click="edit()">编辑</el-button>
+        </template>
         <el-descriptions-item v-for="item in useinfolist" :key="item">
           <template #label>
             <div class="cell-item">
@@ -31,6 +31,7 @@
 
 <script lang="ts" setup>
 import { reactive, ref, watch } from 'vue';
+import img1 from '@/assets/user.webp';
 import PersonSetting from '../../components/personsetting/PersonSetting.vue';
 
 type useinfo = {
@@ -38,6 +39,7 @@ type useinfo = {
   value: string,
   icon: string,
 };
+const img = ref(img1);
 const useinfolist:useinfo[] = [
   {
     label: '用户名称',
@@ -91,8 +93,17 @@ const useinfolist:useinfo[] = [
   },
 ];
 const RefChilde = ref();
-const add = () => {
+const edit = () => {
   RefChilde.value.opendialog();
+  RefChilde.value.form.imageUrl = img;
+  RefChilde.value.form.name = useinfolist[0].value;
+  RefChilde.value.form.sex = useinfolist[1].value;
+  RefChilde.value.form.age = useinfolist[2].value;
+  RefChilde.value.form.phone = useinfolist[3].value;
+  RefChilde.value.form.email = useinfolist[4].value;
+  RefChilde.value.form.facebook = useinfolist[5].value;
+  RefChilde.value.form.part = useinfolist[6].value;
+  RefChilde.value.form.role = useinfolist[7].value;
 };
 </script>
 

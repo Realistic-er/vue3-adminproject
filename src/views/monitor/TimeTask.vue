@@ -94,7 +94,6 @@ const RefChilde = ref();
 const RefChildeAdd = ref();
 const RefPagination = ref();
 gettimetask().then((res) => {
-  console.log(res);
   tableData.value = res.data.data.data;
 });
 const refresh = () => {
