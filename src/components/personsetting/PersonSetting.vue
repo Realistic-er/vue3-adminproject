@@ -195,7 +195,6 @@ const rules = reactive<FormRules>({
 });
 const handleChange: UploadProps['onChange'] = (uploadFile, uploadFiles) => {
   form.imageUrl = window.URL.createObjectURL(uploadFile.raw);
-  console.log(uploadRef);
   // 上传成功以后
   uploadRef.value.clearFiles(); // 先删除选择的文件
 };

@@ -1,25 +1,19 @@
+import { computed } from 'vue';
+import store from './store/index';
+import { routeTag, routearray } from './util/type/routetype';
 import router from './router';
-import monitor from './util/router/monitor';
-import charge from './util/router/charge';
-import layoutpart from './util/router/layoutpart';
-import setting from './util/router/setting';
 
 let registerRouteFresh = true;
-const array:any = [];
-export const routearray = layoutpart.concat(charge, monitor, setting);
-// console.log(routearray);
+
 router.beforeEach(async (to, from, next) => {
-  const account = window.localStorage.getItem('account');
   if (to.path === '/login') next();
   // 已经登录
-  if (account) {
+  if ((store.state as any).user.account !== '') {
     // 第一次挂载路由
     if (registerRouteFresh) {
-      routearray.forEach((v) => {
-        // console.log(v);
+      (store.state as any).user.routearray.forEach((v:routearray) => {
         router.addRoute(v);
       });
-      window.localStorage.setItem('menu', JSON.stringify(routearray));
       next({ ...to, replace: true });
       registerRouteFresh = false;
     } else {

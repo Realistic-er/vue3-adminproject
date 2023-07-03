@@ -1,5 +1,4 @@
 import { routearray } from '../type/routetype';
-import filterrouter from '../function';
 
 const charge:routearray[] = [
   {
@@ -88,4 +87,4 @@ const charge:routearray[] = [
   },
 ];
 
-export default filterrouter(charge);
+export default charge;

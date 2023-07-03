@@ -1,15 +1,20 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '',
+    path: '/',
+    redirect: '/login',
+  },
+  {
+    path: '/login',
     name: 'login',
     component: () => import('@/page/LoginPart.vue'),
   },
+
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   routes,
 });
 

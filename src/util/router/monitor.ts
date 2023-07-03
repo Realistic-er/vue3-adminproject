@@ -88,4 +88,4 @@ const monitor:routearray[] = [
   },
 ];
 
-export default filterrouter(monitor);
+export default monitor;

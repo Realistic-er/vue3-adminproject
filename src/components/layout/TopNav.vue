@@ -40,9 +40,9 @@
         :closable="item.name !== 'index'"
         @close="closeTag(item, index)"
         @click="jumpTag(item)"
-      >
-      {{ item.title }}
-    </el-tag>
+        >
+        {{ item.title }}
+      </el-tag>
     </div>
     <!-- 组件 -->
     <Search-Dialog ref="RefChilde"></Search-Dialog>
@@ -56,13 +56,14 @@ import {
 } from 'vue';
 import { useRouter, useRoute, RouteRecordRaw } from 'vue-router';
 import { useStore } from 'vuex';
+import { ElScrollbar } from 'element-plus';
 import screenfull from 'screenfull';
 import SearchDialog from '../SearchDialog.vue';
 import { routeTag } from '../../util/type/routetype';
 
 const store = useStore();
 const RefChilde = ref();
-const isscreen = computed(() => store.state.menu.isscreen);
+const scrollbarRef = ref<InstanceType<typeof ElScrollbar>>();
 const icons = ['FullScreen', 'Lock'];
 const isCollapse = computed(() => store.state.menu.isCollapse);
 const routetagarray = computed(() => store.state.menu.routeTagarray);

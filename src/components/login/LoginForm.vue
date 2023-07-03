@@ -25,19 +25,20 @@
 
 <script lang="ts" setup>
 import { reactive, ref } from 'vue';
+import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import type { FormInstance, FormRules } from 'element-plus';
 import { User, Lock } from '@element-plus/icons-vue';
 import { ElMessage } from 'element-plus';
 import loginin from '@/util/api/user';
 
+const store = useStore();
 const ruleFormRef = ref<FormInstance>();
 const router = useRouter();
 const ruleForm = reactive({
   username: 'admin',
   password: '123456',
 });
-
 const rules = reactive<FormRules>({
   username: [
     {
@@ -67,10 +68,11 @@ const submitForm = async (formEl: FormInstance | undefined) => {
             message: '欢迎使用后台管理系统',
             type: 'success',
           });
-          router.push({
-            name: 'index',
-          });
           window.localStorage.setItem('account', ruleForm.username);
+          store.commit('changeroutess', ruleForm.username);
+          router.push({
+            path: '/first/index',
+          });
         } else {
           ElMessage.error('用户名称或者密码不正确,请重新尝试');
         }

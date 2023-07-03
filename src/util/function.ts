@@ -11,6 +11,7 @@ const filterrouter = (a:routearray[]) => {
     }
   });
   arraychildren[0].children = array;
+  console.log(array, arraychildren);
   return arraychildren;
 };
 

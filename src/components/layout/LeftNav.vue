@@ -63,7 +63,7 @@ import router from '@/router';
 import { routearray, routeTag } from '../../util/type/routetype';
 
 const store = useStore();
-const menu = ref(JSON.parse(window.localStorage.getItem('menu')));
+const menu = computed(() => store.state.user.routearray);
 const isCollapse = computed(() => store.state.menu.isCollapse);
 // 一级菜单栏
 const saveTagIndex = (para:routearray) => {

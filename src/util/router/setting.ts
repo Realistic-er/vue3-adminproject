@@ -20,11 +20,10 @@ const setting:routearray[] = [
           icon: 'Setting',
         },
         component: () => import('@/views/setting/PersonSetting.vue'),
-        children: [
-        ],
+        children: [],
       },
     ],
   },
 ];
 
-export default filterrouter(setting);
+export default setting;

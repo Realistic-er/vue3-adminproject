@@ -45,7 +45,7 @@ import {
 } from 'vue';
 import { useStore } from 'vuex';
 import router from '@/router';
-import { routearray } from '../permission';
+import { routeTag, routearray } from '../util/type/routetype';
 
 type obj1 = {
   name: string,
@@ -58,23 +58,18 @@ const opendialog = () => {
   dialogVisible.value = true;
 };
 const array:obj1[] = reactive([]);
-routearray[0].children.forEach((v) => {
-  const obj = {
-    name: '',
-    title: '',
-  };
-  obj.name = v.name;
-  obj.title = v.meta.title;
-  array.push(obj);
-});
-routearray[1].children.forEach((v) => {
-  const obj = {
-    name: '',
-    title: '',
-  };
-  obj.name = v.name;
-  obj.title = v.meta.title;
-  array.push(obj);
+store.state.user.routearray.forEach((v:routearray) => {
+  if (v.children.length !== 0) {
+    v.children.forEach((i:routearray) => {
+      const obj = {
+        name: '',
+        title: '',
+      };
+      obj.name = i.name;
+      obj.title = i.meta.title;
+      array.push(obj);
+    });
+  }
 });
 let arraycontent1:obj1[] = reactive([]);
 watch(() => input, (val) => {

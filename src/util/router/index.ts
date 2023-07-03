@@ -1,7 +1,6 @@
 import { routearray } from '../type/routetype';
-import filterrouter from '../function';
 
-const layoutpart:routearray[] = [
+const index:routearray[] = [
   {
     path: '/first',
     name: 'first',
@@ -26,4 +25,4 @@ const layoutpart:routearray[] = [
   },
 ];
 
-export default layoutpart;
+export default index;
